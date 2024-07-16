@@ -11,6 +11,9 @@ import SpriteKit
 
 class GameCoordinator: UIViewController, SKSceneDelegate {
     
+    var timeInterval: TimeInterval = 0.1
+    var gameLoopTimer: Timer?
+    
     var viewController: UIViewController?
     
     var backgroundGameView: SKView?
@@ -19,10 +22,26 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     var mainScene: MainScene?
     
     
-
+    func start() {
+        self.setupGameLoop(timeInterval)
+    }
     
-    init() {
+    func setupGameLoop(_ timeInterval: TimeInterval) {
+        gameLoopTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(gameLoop), userInfo: nil, repeats: true)
+    }
+    
+    func shallChangeSceneFor(_ scene: K.Scene) {
         
+
+        
+    }
+    
+    @objc func gameLoop() {
+        
+    }
+    
+    override init(nibName: String?, bundle: Bundle?) {
+        super.init(nibName: nibName, bundle: bundle)
     }
     
     required init?(coder: NSCoder) {
@@ -34,21 +53,21 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
 
 
 // MARK: - Coordinator Extension
-extension GameCoordinator: Coordinator {
-    
-    override var navigationController: UINavigationController? {
-        get {
-            <#code#>
-        }
-        set {
-            <#code#>
-        }
-    }
-    
-    func start() {
-        <#code#>
-    }
-}
+//extension GameCoordinator: Coordinator {
+//    
+//    override var navigationController: UINavigationController? {
+//        get {
+//            
+//        }
+//        set {
+//            
+//        }
+//    }
+//    
+//    func start() {
+//        
+//    }
+//}
 
 
 // MARK: - Buttons Extension

@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     
     // MARK: - Setup Methods
     
-    private func setupContainerLayoutGuide(withConstant constValue: CGFloat = -50) {
+    private func setupContainerLayoutGuide(withConstant constValue: CGFloat = -100) {
         
         view.addLayoutGuide(containerLayoutGuide)
         
@@ -84,13 +84,13 @@ class ViewController: UIViewController {
         
     }
     
-    private func setupButtonsContainer(withConstant constValue: CGFloat = -50) {
+    private func setupButtonsContainer(withConstant constValue: CGFloat = -100) {
         
         view.addLayoutGuide(buttonsContainerLayoutGuide)
         
         NSLayoutConstraint.activate([
             buttonsContainerLayoutGuide.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            buttonsContainerLayoutGuide.heightAnchor.constraint(equalToConstant: 100),
+            buttonsContainerLayoutGuide.heightAnchor.constraint(equalToConstant: -constValue),
             buttonsContainerLayoutGuide.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             buttonsContainerLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: constValue)
         ])

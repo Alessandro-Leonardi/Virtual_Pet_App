@@ -16,6 +16,13 @@
 		97B904192C46C8F200F5BFDA /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904182C46C8F200F5BFDA /* GameCoordinator.swift */; };
 		97B9041B2C46C95A00F5BFDA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B9041A2C46C95A00F5BFDA /* Coordinator.swift */; };
 		97B9041E2C46C9F800F5BFDA /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B9041D2C46C9F800F5BFDA /* MainScene.swift */; };
+		97B904212C46FDC100F5BFDA /* PetEgg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904202C46FDC100F5BFDA /* PetEgg.swift */; };
+		97B904232C46FE1600F5BFDA /* PetEggInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904222C46FE1600F5BFDA /* PetEggInfo.swift */; };
+		97B904252C46FE3B00F5BFDA /* PlaidEgg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904242C46FE3B00F5BFDA /* PlaidEgg.swift */; };
+		97B904282C46FE8200F5BFDA /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904272C46FE8200F5BFDA /* Pet.swift */; };
+		97B9042A2C47004200F5BFDA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904292C47004200F5BFDA /* TestViewController.swift */; };
+		97B9042C2C47007300F5BFDA /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B9042B2C47007300F5BFDA /* K.swift */; };
+		97B9042E2C470BF000F5BFDA /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B9042D2C470BF000F5BFDA /* MenuManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +37,13 @@
 		97B904182C46C8F200F5BFDA /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 		97B9041A2C46C95A00F5BFDA /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		97B9041D2C46C9F800F5BFDA /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
+		97B904202C46FDC100F5BFDA /* PetEgg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetEgg.swift; sourceTree = "<group>"; };
+		97B904222C46FE1600F5BFDA /* PetEggInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetEggInfo.swift; sourceTree = "<group>"; };
+		97B904242C46FE3B00F5BFDA /* PlaidEgg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidEgg.swift; sourceTree = "<group>"; };
+		97B904272C46FE8200F5BFDA /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		97B904292C47004200F5BFDA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		97B9042B2C47007300F5BFDA /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
+		97B9042D2C470BF000F5BFDA /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +78,11 @@
 			children = (
 				97B903FF2C46B21F00F5BFDA /* AppDelegate.swift */,
 				97B904012C46B21F00F5BFDA /* SceneDelegate.swift */,
-				97B904172C46C4AB00F5BFDA /* Mischellaneous */,
-				97B904162C46C49900F5BFDA /* Coordinators */,
-				97B904152C46C49000F5BFDA /* Controllers */,
-				97B904142C46C48900F5BFDA /* Views */,
 				97B904132C46C47E00F5BFDA /* Models */,
+				97B904142C46C48900F5BFDA /* Views */,
+				97B904152C46C49000F5BFDA /* Controllers */,
+				97B904162C46C49900F5BFDA /* Coordinators */,
+				97B904172C46C4AB00F5BFDA /* Mischellaneous */,
 				97B904082C46B22000F5BFDA /* Assets.xcassets */,
 				97B9040D2C46B22000F5BFDA /* Info.plist */,
 			);
@@ -78,7 +92,9 @@
 		97B904132C46C47E00F5BFDA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				97B9041C2C46C9B700F5BFDA /* SKModels */,
+				97B9041F2C46FDA700F5BFDA /* Egg Models */,
+				97B904262C46FE5900F5BFDA /* Baby Pet Models */,
+				97B9042D2C470BF000F5BFDA /* MenuManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -88,6 +104,7 @@
 			children = (
 				97B9040A2C46B22000F5BFDA /* LaunchScreen.storyboard */,
 				97B904052C46B21F00F5BFDA /* Main.storyboard */,
+				97B9041C2C46C9B700F5BFDA /* SKModels */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -95,6 +112,7 @@
 		97B904152C46C49000F5BFDA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				97B904292C47004200F5BFDA /* TestViewController.swift */,
 				97B904032C46B21F00F5BFDA /* ViewController.swift */,
 			);
 			path = Controllers;
@@ -112,6 +130,7 @@
 		97B904172C46C4AB00F5BFDA /* Mischellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				97B9042B2C47007300F5BFDA /* K.swift */,
 			);
 			path = Mischellaneous;
 			sourceTree = "<group>";
@@ -122,6 +141,24 @@
 				97B9041D2C46C9F800F5BFDA /* MainScene.swift */,
 			);
 			path = SKModels;
+			sourceTree = "<group>";
+		};
+		97B9041F2C46FDA700F5BFDA /* Egg Models */ = {
+			isa = PBXGroup;
+			children = (
+				97B904202C46FDC100F5BFDA /* PetEgg.swift */,
+				97B904222C46FE1600F5BFDA /* PetEggInfo.swift */,
+				97B904242C46FE3B00F5BFDA /* PlaidEgg.swift */,
+			);
+			path = "Egg Models";
+			sourceTree = "<group>";
+		};
+		97B904262C46FE5900F5BFDA /* Baby Pet Models */ = {
+			isa = PBXGroup;
+			children = (
+				97B904272C46FE8200F5BFDA /* Pet.swift */,
+			);
+			path = "Baby Pet Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,11 +232,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B904212C46FDC100F5BFDA /* PetEgg.swift in Sources */,
+				97B904252C46FE3B00F5BFDA /* PlaidEgg.swift in Sources */,
+				97B9042A2C47004200F5BFDA /* TestViewController.swift in Sources */,
 				97B904042C46B21F00F5BFDA /* ViewController.swift in Sources */,
 				97B904002C46B21F00F5BFDA /* AppDelegate.swift in Sources */,
+				97B904232C46FE1600F5BFDA /* PetEggInfo.swift in Sources */,
+				97B904282C46FE8200F5BFDA /* Pet.swift in Sources */,
 				97B9041B2C46C95A00F5BFDA /* Coordinator.swift in Sources */,
 				97B9041E2C46C9F800F5BFDA /* MainScene.swift in Sources */,
+				97B9042C2C47007300F5BFDA /* K.swift in Sources */,
 				97B904192C46C8F200F5BFDA /* GameCoordinator.swift in Sources */,
+				97B9042E2C470BF000F5BFDA /* MenuManager.swift in Sources */,
 				97B904022C46B21F00F5BFDA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
