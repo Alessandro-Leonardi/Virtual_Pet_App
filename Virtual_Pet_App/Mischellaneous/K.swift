@@ -48,4 +48,5 @@ enum AppError: Error {
     
     case plaidEggIsNil
     case plaidEggSpriteIsNil
+    case plaidEggStandingAnimationIsNil
 }

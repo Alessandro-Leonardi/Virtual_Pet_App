@@ -14,7 +14,8 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     static var defaultSize = CGSize(width: 300, height: 300)
     static var defaultFrame = CGRect(x: 0, y: 0, width: 300, height: 300)
     
-    var timeInterval: TimeInterval = 1.0
+    var secondsPassed: TimeInterval = 0.0
+    var timeInterval: TimeInterval = 2.0
     var gameLoopTimer: Timer?
     
     var viewController: UIViewController?
@@ -93,7 +94,8 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     }
     
     @objc func gameLoop() {
-        print("gameLoop")
+        secondsPassed += timeInterval
+        print("gameLoop at (\(secondsPassed)s)")
     }
     
     func shallChangeSceneFor(_ scene: K.Scene) {

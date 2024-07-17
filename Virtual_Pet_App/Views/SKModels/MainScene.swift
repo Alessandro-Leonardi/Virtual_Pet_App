@@ -22,18 +22,29 @@ class MainScene: SKScene {
             
             guard let gameCoordinator = self.gameCoordinator else { throw AppError.gameCoordinatorIsNil }
             guard let plaidEgg = gameCoordinator.plaidEgg else { throw AppError.plaidEggIsNil }
+            
             guard let plaidEggSprite = plaidEgg.sprite else { throw AppError.plaidEggIsNil }
+            guard let plaidEggStandingAnimation = plaidEgg.standingAnimation else { throw AppError.plaidEggStandingAnimationIsNil }
             
             // 
             
             self.addChild(plaidEggSprite)
             
+            let standinRepeatedForever = SKAction.repeatForever(plaidEggStandingAnimation)
+            plaidEggSprite.run(standinRepeatedForever)
+            
+            
+            
+        }
+
+        catch AppError.gameCoordinatorIsNil {
+            print("> `gameCoordinator` is nil at MainScene.didMove(to:) :")
         }
         catch AppError.plaidEggIsNil {
-            
+            print("> `plaidEgg` is nil at MainScene.didMove(to:) :")
         }
-        catch AppError.gameCoordinatorIsNil {
-            
+        catch AppError.plaidEggStandingAnimationIsNil {
+            print("> `plaidEggStandingAnimation` is nil at MainScene.didMove(to:) :")
         }
         catch {
             print("> Something went wrong at MainScene.didMove(to:) :")

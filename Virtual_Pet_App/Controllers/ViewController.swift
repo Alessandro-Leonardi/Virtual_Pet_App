@@ -33,8 +33,8 @@ class ViewController: UIViewController {
         setupButtonsContainer(withConstant: -100)
         setupButtons(withConstant: 50)
         
-        setupBackgroundGameView()
-        setupForegroundGameView()
+        setupBackgroundGameView(backgroundColor: .clear, allowsTransparency: true)
+        setupForegroundGameView(backgroundColor: .clear, allowsTransparency: true)
         
         checkReferences()
         checkIfSKViewsAreWorking()
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     
     
     
-    private func setupBackgroundGameView() {
+    private func setupBackgroundGameView(backgroundColor BGColor: UIColor, allowsTransparency transparency: Bool) {
         gameCoordinator.backgroundGameView = SKView()
         guard let backgroundGameView = gameCoordinator.backgroundGameView else { return }
         
@@ -115,10 +115,11 @@ class ViewController: UIViewController {
             backgroundGameView.centerYAnchor.constraint(equalTo: containerLayoutGuide.centerYAnchor)
         ])
         
-        gameCoordinator.backgroundGameView = backgroundGameView
+        backgroundGameView.backgroundColor = BGColor
+        backgroundGameView.allowsTransparency = transparency
     }
     
-    private func setupForegroundGameView() {
+    private func setupForegroundGameView(backgroundColor BGColor: UIColor, allowsTransparency transparency: Bool) {
         gameCoordinator.foregroundGameView = SKView()
         guard let foregroundGameView = gameCoordinator.foregroundGameView else { return }
         
@@ -132,7 +133,9 @@ class ViewController: UIViewController {
             foregroundGameView.centerYAnchor.constraint(equalTo: containerLayoutGuide.centerYAnchor)
         ])
         
-        gameCoordinator.foregroundGameView = foregroundGameView
+        
+        foregroundGameView.backgroundColor = BGColor
+        foregroundGameView.allowsTransparency = transparency
     }
     
     
@@ -214,10 +217,6 @@ class ViewController: UIViewController {
             
             guard let backgroundGameView = gameCoordinator.backgroundGameView else { throw AppError.backgroundGameViewIsNil  }
             guard let foregroundGameView =  gameCoordinator.foregroundGameView else { throw AppError.foregroundGameViewIsNil  }
-            
-            backgroundGameView.backgroundColor = UIColor.clear
-            foregroundGameView.backgroundColor = UIColor.clear
-            
             
             redScene.backgroundColor = UIColor.red.withAlphaComponent(0.5)
             blueScene.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
