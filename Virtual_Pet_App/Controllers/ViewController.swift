@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     private var buttonC: UIButton?
     
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -209,7 +208,7 @@ class ViewController: UIViewController {
         catch AppError.mainSceneIsNil {
             print("> mainScene is not linked properly.")
             
-            gameCoordinator.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
+            gameCoordinator.mainScene = MainScene(size: CGSize(width: 300, height: 300), coordinator: gameCoordinator, anchorPoint: MainScene.defaultAnchorPoint)
             
             if gameCoordinator.mainScene != nil {
                 print("> mainScene was recovered successfully.")

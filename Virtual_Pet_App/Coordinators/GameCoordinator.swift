@@ -40,7 +40,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
         // mainScene
         if self.mainScene == nil {
             print("> Loading mainScene...")
-            self.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
+            self.mainScene = MainScene(size: CGSize(width: 300, height: 300), coordinator: self, anchorPoint: MainScene.defaultAnchorPoint)
             if mainScene != nil { print("> mainScene: OK!") }
         } else { print("> mainScene: OK!") }
         

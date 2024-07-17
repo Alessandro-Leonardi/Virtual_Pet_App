@@ -38,8 +38,14 @@ struct K {
 }
 
 enum AppError: Error {
+    case gameCoordinatorIsNil
     case viewControllerIsNil
+    
     case backgroundGameViewIsNil
     case foregroundGameViewIsNil
+    
     case mainSceneIsNil
+    
+    case plaidEggIsNil
+    case plaidEggSpriteIsNil
 }
