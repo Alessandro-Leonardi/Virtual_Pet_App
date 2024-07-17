@@ -56,7 +56,7 @@ class MainScene: SKScene {
     
     
     init(size: CGSize, coordinator: GameCoordinator, anchorPoint: CGPoint) {
-        super.init()
+        super.init(size: size)
         
         self.gameCoordinator = coordinator
         self.anchorPoint = anchorPoint

@@ -11,6 +11,9 @@ import SpriteKit
 
 class GameCoordinator: UIViewController, SKSceneDelegate {
     
+    static var defaultSize = CGSize(width: 300, height: 300)
+    static var defaultFrame = CGRect(x: 0, y: 0, width: 300, height: 300)
+    
     var timeInterval: TimeInterval = 1.0
     var gameLoopTimer: Timer?
     
@@ -40,7 +43,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
         // mainScene
         if self.mainScene == nil {
             print("> Loading mainScene...")
-            self.mainScene = MainScene(size: CGSize(width: 300, height: 300), coordinator: self, anchorPoint: MainScene.defaultAnchorPoint)
+            self.mainScene = MainScene(size: GameCoordinator.defaultSize, coordinator: self, anchorPoint: MainScene.defaultAnchorPoint)
             if mainScene != nil { print("> mainScene: OK!") }
         } else { print("> mainScene: OK!") }
         
@@ -118,16 +121,19 @@ extension GameCoordinator {
     
     
     
-    func buttonAPressed(){
-        
+    @objc func buttonAPressed(){
+        print("A pressed")
     }
     
-    func buttonBPressed(){
-        
+    @objc func buttonBPressed(){
+        print("B pressed")
     }
     
-    func buttonCPressed(){
-        
+    @objc func buttonCPressed(){
+        print("C pressed")
     }
+    
+    
+    
     
 }

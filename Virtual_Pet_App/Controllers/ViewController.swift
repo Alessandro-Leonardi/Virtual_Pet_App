@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         view.backgroundColor = .black
         setupContainerLayoutGuide()
         
-        setupButtonsContainer()
-        setupButtons()
+        setupButtonsContainer(withConstant: -100)
+        setupButtons(withConstant: 50)
         
         setupBackgroundGameView()
         setupForegroundGameView()
@@ -69,9 +69,9 @@ class ViewController: UIViewController {
     }
     
     private func setupButtons(withConstant constValue: CGFloat = 50) {
-        buttonA = createButton(title: "A", backgroundColor: .red, action: #selector(buttonAWasTouchedDown))
-        buttonB = createButton(title: "B", backgroundColor: .green, action: #selector(buttonBWasTouchedDown))
-        buttonC = createButton(title: "C", backgroundColor: .blue, action: #selector(buttonCWasTouchedDown))
+        buttonA = createButton(title: "A", backgroundColor: .red, action: #selector(gameCoordinator.buttonAPressed))
+        buttonB = createButton(title: "B", backgroundColor: .green, action: #selector(gameCoordinator.buttonBPressed))
+        buttonC = createButton(title: "C", backgroundColor: .blue, action: #selector(gameCoordinator.buttonCPressed))
         
         guard let buttonA = buttonA, let buttonB = buttonB, let buttonC = buttonC else { return }
         
@@ -149,28 +149,9 @@ class ViewController: UIViewController {
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.gray.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: action, for: .touchDown)
+        button.addTarget(gameCoordinator, action: action, for: .touchDown)
         return button
     }
-    
-    // MARK: - Actions
-    
-    @objc private func buttonAWasTouchedDown() {
-        print("Button A Was Touched Down")
-        gameCoordinator.buttonAPressed()
-    }
-    
-    @objc private func buttonBWasTouchedDown() {
-        print("Button B Was Touched Down")
-        gameCoordinator.buttonBPressed()
-    }
-    
-    @objc private func buttonCWasTouchedDown() {
-        print("Button C Was Touched Down")
-        gameCoordinator.buttonCPressed()
-    }
-    
-    
     
     
     // MARK: - Checking Methods
@@ -208,7 +189,7 @@ class ViewController: UIViewController {
         catch AppError.mainSceneIsNil {
             print("> mainScene is not linked properly.")
             
-            gameCoordinator.mainScene = MainScene(size: CGSize(width: 300, height: 300), coordinator: gameCoordinator, anchorPoint: MainScene.defaultAnchorPoint)
+            gameCoordinator.mainScene = MainScene(size: GameCoordinator.defaultSize, coordinator: gameCoordinator, anchorPoint: MainScene.defaultAnchorPoint)
             
             if gameCoordinator.mainScene != nil {
                 print("> mainScene was recovered successfully.")
@@ -226,8 +207,8 @@ class ViewController: UIViewController {
 
     
     func checkIfSKViewsAreWorking() {
-        let redScene = SKScene(size: CGSize(width: 300, height: 300))
-        let blueScene = SKScene(size: CGSize(width: 300, height: 300))
+        let redScene = SKScene(size: GameCoordinator.defaultSize)
+        let blueScene = SKScene(size: GameCoordinator.defaultSize)
         
         do {
             
