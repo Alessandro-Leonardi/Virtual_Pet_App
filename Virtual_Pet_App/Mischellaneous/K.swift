@@ -30,3 +30,8 @@ struct K {
         
     }
 }
+
+enum AppErrors: Error {
+    case backgroundGameViewIsNil
+    case foregroundGameViewIsNil
+}

@@ -32,8 +32,6 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     
     func shallChangeSceneFor(_ scene: K.Scene) {
         
-
-        
     }
     
     @objc func gameLoop() {

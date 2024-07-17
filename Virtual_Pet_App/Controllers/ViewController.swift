@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     private var backgroundGameView: SKView?
     private var foregroundGameView: SKView?
     
-    private var mainScene: MainScene?
+//    private var mainScene: MainScene?
     
     private var buttonA: UIButton?
     private var buttonB: UIButton?
@@ -35,11 +35,18 @@ class ViewController: UIViewController {
         
         view.backgroundColor = .black
         setupContainerLayoutGuide()
+        
+        setupCoordinators()
+        
         setupBackgroundGameView()
+        setupForegroundGameView()
+        
         setupScenes()
         setupButtonsContainer()
         setupButtons()
-        setupCoordinators()
+        
+        
+        checkIfSKViewsAreWorking()
     }
     
     // MARK: - Setup Methods
@@ -73,14 +80,29 @@ class ViewController: UIViewController {
         gameCoordinator.backgroundGameView = backgroundGameView
     }
     
+    private func setupForegroundGameView() {
+        self.foregroundGameView = SKView()
+        guard let foregroundGameView = self.foregroundGameView else { return }
+        
+        view.addSubview(foregroundGameView)
+        foregroundGameView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            foregroundGameView.widthAnchor.constraint(equalTo: containerLayoutGuide.widthAnchor),
+            foregroundGameView.heightAnchor.constraint(equalTo: containerLayoutGuide.heightAnchor),
+            foregroundGameView.centerXAnchor.constraint(equalTo: containerLayoutGuide.centerXAnchor),
+            foregroundGameView.centerYAnchor.constraint(equalTo: containerLayoutGuide.centerYAnchor)
+        ])
+        
+        gameCoordinator.foregroundGameView = foregroundGameView
+    }
+    
     private func setupScenes() {
-        self.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
-        
-        
-        guard let backgroundGameView = backgroundGameView, let mainScene = self.mainScene else { return }
-        
-        mainScene.delegate = gameCoordinator
-        backgroundGameView.presentScene(mainScene)
+        if let mainScene = gameCoordinator.mainScene,
+           let backgroundGameView = self.backgroundGameView {
+            mainScene.delegate = gameCoordinator
+            backgroundGameView.presentScene(mainScene)
+        }
         
     }
     
@@ -126,11 +148,15 @@ class ViewController: UIViewController {
     }
     
     private func setupCoordinators() {
-        gameCoordinator.viewController = self
-        if let mainScene = self.mainScene {
-            gameCoordinator.mainScene = mainScene
+
+        gameCoordinator.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
+        
+        if let isNil = gameCoordinator.mainScene {
+            print("setupCoordinator returned ok.")
+            
+            gameCoordinator.start()
         }
-        gameCoordinator.start()
+        
     }
     
     // MARK: - Helper Methods
@@ -163,6 +189,33 @@ class ViewController: UIViewController {
     @objc private func buttonCWasTouchedDown() {
         print("Button C Was Touched Down")
         gameCoordinator.buttonCPressed()
+    }
+    
+    
+    func checkIfSKViewsAreWorking() {
+        let redScene = SKScene(size: CGSize(width: 300, height: 300))
+        let blueScene = SKScene(size: CGSize(width: 300, height: 300))
+        
+        do {
+            
+            guard let backgroundGameView = gameCoordinator.backgroundGameView else { throw AppErrors.backgroundGameViewIsNil  }
+            guard let foregroundGameView =  gameCoordinator.foregroundGameView else { throw AppErrors.foregroundGameViewIsNil  }
+            
+            backgroundGameView.backgroundColor = UIColor.clear
+            foregroundGameView.backgroundColor = UIColor.clear
+            
+            
+            redScene.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+            blueScene.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
+            
+            backgroundGameView.presentScene(blueScene)
+            foregroundGameView.presentScene(redScene)
+            
+        } catch {
+            
+            print("something is nil")
+        }
+ 
     }
     
     // MARK: - Public Methods
