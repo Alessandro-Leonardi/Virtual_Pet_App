@@ -38,8 +38,9 @@ class ViewController: UIViewController {
         setupForegroundGameView()
         
         checkReferences()
-        
         checkIfSKViewsAreWorking()
+        
+        gameCoordinator.start()
     }
     
     // MARK: - Setup Methods
@@ -177,19 +178,17 @@ class ViewController: UIViewController {
     
     private func checkReferences() {
         
-        var shallTryAgain = false
-        
         do {
-            guard let viewController = gameCoordinator.viewController else { throw AppError.viewControllerIsNil }
+            guard gameCoordinator.viewController != nil else { throw AppError.viewControllerIsNil }
             print("> ViewController is linked properly.")
             
-            guard let backgroundGameView = gameCoordinator.backgroundGameView else { throw AppError.backgroundGameViewIsNil }
+            guard gameCoordinator.backgroundGameView != nil else { throw AppError.backgroundGameViewIsNil }
             print("> backgroundGameView is linked properly.")
             
-            guard let foregroundGameView = gameCoordinator.foregroundGameView else { throw AppError.foregroundGameViewIsNil }
+            guard gameCoordinator.foregroundGameView != nil else { throw AppError.foregroundGameViewIsNil }
             print("> foregroundGameView is linked properly.")
             
-            guard let mainScene = gameCoordinator.mainScene else { throw AppError.mainSceneIsNil }
+            guard gameCoordinator.mainScene != nil else { throw AppError.mainSceneIsNil }
             print("> mainScene is linked properly.")
             
             
@@ -212,7 +211,7 @@ class ViewController: UIViewController {
             
             gameCoordinator.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
             
-            if let mainScene = gameCoordinator.mainScene {
+            if gameCoordinator.mainScene != nil {
                 print("> mainScene was recovered successfully.")
                 
                 print("> Checking again:")

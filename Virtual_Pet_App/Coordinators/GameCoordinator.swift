@@ -11,7 +11,7 @@ import SpriteKit
 
 class GameCoordinator: UIViewController, SKSceneDelegate {
     
-    var timeInterval: TimeInterval = 0.1
+    var timeInterval: TimeInterval = 1.0
     var gameLoopTimer: Timer?
     
     var viewController: UIViewController?
@@ -23,18 +23,18 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     
     
     func start() {
-        self.setupGameLoop(timeInterval)
+        self.setupGameLoop(timeInterval) //OBS: The gameLoop may be redundant because of SKScene.update()
     }
     
     func setupGameLoop(_ timeInterval: TimeInterval) {
         gameLoopTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(gameLoop), userInfo: nil, repeats: true)
     }
     
-    func shallChangeSceneFor(_ scene: K.Scene) {
-        
+    @objc func gameLoop() {
+        print("gameLoop")
     }
     
-    @objc func gameLoop() {
+    func shallChangeSceneFor(_ scene: K.Scene) {
         
     }
     
