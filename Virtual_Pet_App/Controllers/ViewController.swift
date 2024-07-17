@@ -12,21 +12,16 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     
-    public var gameCoordinator = GameCoordinator()
-    
     private var containerLayoutGuide = UILayoutGuide()
     private var buttonsContainerLayoutGuide = UILayoutGuide()
     
-    private var backgroundGameView: SKView?
-    private var foregroundGameView: SKView?
-    
-//    private var mainScene: MainScene?
+    public var gameCoordinator = GameCoordinator()
     
     private var buttonA: UIButton?
     private var buttonB: UIButton?
     private var buttonC: UIButton?
     
-
+    
     
     // MARK: - Lifecycle
     
@@ -36,15 +31,13 @@ class ViewController: UIViewController {
         view.backgroundColor = .black
         setupContainerLayoutGuide()
         
-        setupCoordinators()
+        setupButtonsContainer()
+        setupButtons()
         
         setupBackgroundGameView()
         setupForegroundGameView()
         
-        setupScenes()
-        setupButtonsContainer()
-        setupButtons()
-        
+        checkReferences()
         
         checkIfSKViewsAreWorking()
     }
@@ -61,49 +54,6 @@ class ViewController: UIViewController {
             containerLayoutGuide.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             containerLayoutGuide.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: constValue)
         ])
-    }
-    
-    private func setupBackgroundGameView() {
-        self.backgroundGameView = SKView()
-        guard let backgroundGameView = self.backgroundGameView else { return }
-        
-        view.addSubview(backgroundGameView)
-        backgroundGameView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            backgroundGameView.widthAnchor.constraint(equalTo: containerLayoutGuide.widthAnchor),
-            backgroundGameView.heightAnchor.constraint(equalTo: containerLayoutGuide.heightAnchor),
-            backgroundGameView.centerXAnchor.constraint(equalTo: containerLayoutGuide.centerXAnchor),
-            backgroundGameView.centerYAnchor.constraint(equalTo: containerLayoutGuide.centerYAnchor)
-        ])
-        
-        gameCoordinator.backgroundGameView = backgroundGameView
-    }
-    
-    private func setupForegroundGameView() {
-        self.foregroundGameView = SKView()
-        guard let foregroundGameView = self.foregroundGameView else { return }
-        
-        view.addSubview(foregroundGameView)
-        foregroundGameView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            foregroundGameView.widthAnchor.constraint(equalTo: containerLayoutGuide.widthAnchor),
-            foregroundGameView.heightAnchor.constraint(equalTo: containerLayoutGuide.heightAnchor),
-            foregroundGameView.centerXAnchor.constraint(equalTo: containerLayoutGuide.centerXAnchor),
-            foregroundGameView.centerYAnchor.constraint(equalTo: containerLayoutGuide.centerYAnchor)
-        ])
-        
-        gameCoordinator.foregroundGameView = foregroundGameView
-    }
-    
-    private func setupScenes() {
-        if let mainScene = gameCoordinator.mainScene,
-           let backgroundGameView = self.backgroundGameView {
-            mainScene.delegate = gameCoordinator
-            backgroundGameView.presentScene(mainScene)
-        }
-        
     }
     
     private func setupButtonsContainer(withConstant constValue: CGFloat = -100) {
@@ -147,18 +97,47 @@ class ViewController: UIViewController {
         ])
     }
     
-    private func setupCoordinators() {
-
-        gameCoordinator.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
+    
+    
+    
+    
+    private func setupBackgroundGameView() {
+        gameCoordinator.backgroundGameView = SKView()
+        guard let backgroundGameView = gameCoordinator.backgroundGameView else { return }
         
-        if let isNil = gameCoordinator.mainScene {
-            print("setupCoordinator returned ok.")
-            
-            gameCoordinator.start()
-        }
+        view.addSubview(backgroundGameView)
+        backgroundGameView.translatesAutoresizingMaskIntoConstraints = false
         
+        NSLayoutConstraint.activate([
+            backgroundGameView.widthAnchor.constraint(equalTo: containerLayoutGuide.widthAnchor),
+            backgroundGameView.heightAnchor.constraint(equalTo: containerLayoutGuide.heightAnchor),
+            backgroundGameView.centerXAnchor.constraint(equalTo: containerLayoutGuide.centerXAnchor),
+            backgroundGameView.centerYAnchor.constraint(equalTo: containerLayoutGuide.centerYAnchor)
+        ])
+        
+        gameCoordinator.backgroundGameView = backgroundGameView
     }
     
+    private func setupForegroundGameView() {
+        gameCoordinator.foregroundGameView = SKView()
+        guard let foregroundGameView = gameCoordinator.foregroundGameView else { return }
+        
+        view.addSubview(foregroundGameView)
+        foregroundGameView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            foregroundGameView.widthAnchor.constraint(equalTo: containerLayoutGuide.widthAnchor),
+            foregroundGameView.heightAnchor.constraint(equalTo: containerLayoutGuide.heightAnchor),
+            foregroundGameView.centerXAnchor.constraint(equalTo: containerLayoutGuide.centerXAnchor),
+            foregroundGameView.centerYAnchor.constraint(equalTo: containerLayoutGuide.centerYAnchor)
+        ])
+        
+        gameCoordinator.foregroundGameView = foregroundGameView
+    }
+    
+    
+    
+
     // MARK: - Helper Methods
     
     private func createButton(title: String, backgroundColor: UIColor, action: Selector) -> UIButton {
@@ -192,14 +171,70 @@ class ViewController: UIViewController {
     }
     
     
+    
+    
+    // MARK: - Checking Methods
+    
+    private func checkReferences() {
+        
+        var shallTryAgain = false
+        
+        do {
+            guard let viewController = gameCoordinator.viewController else { throw AppError.viewControllerIsNil }
+            print("> ViewController is linked properly.")
+            
+            guard let backgroundGameView = gameCoordinator.backgroundGameView else { throw AppError.backgroundGameViewIsNil }
+            print("> backgroundGameView is linked properly.")
+            
+            guard let foregroundGameView = gameCoordinator.foregroundGameView else { throw AppError.foregroundGameViewIsNil }
+            print("> foregroundGameView is linked properly.")
+            
+            guard let mainScene = gameCoordinator.mainScene else { throw AppError.mainSceneIsNil }
+            print("> mainScene is linked properly.")
+            
+            
+        }
+        catch AppError.viewControllerIsNil {
+            print("> ViewController is not linked properly.")
+            gameCoordinator.viewController = self
+            
+            print("> Checking again:")
+            checkReferences()
+        }
+        catch AppError.backgroundGameViewIsNil {
+            print("> backgroundGameView is not linked properly.")
+        }
+        catch AppError.foregroundGameViewIsNil {
+            print("> foregroundGameView is not linked properly.")
+        }
+        catch AppError.mainSceneIsNil {
+            print("> mainScene is not linked properly.")
+            
+            gameCoordinator.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
+            
+            if let mainScene = gameCoordinator.mainScene {
+                print("> mainScene was recovered successfully.")
+                
+                print("> Checking again:")
+                checkReferences()
+            }
+            
+        }
+        catch {
+            print("> Something is not linked properly.")
+        }
+        
+    }
+
+    
     func checkIfSKViewsAreWorking() {
         let redScene = SKScene(size: CGSize(width: 300, height: 300))
         let blueScene = SKScene(size: CGSize(width: 300, height: 300))
         
         do {
             
-            guard let backgroundGameView = gameCoordinator.backgroundGameView else { throw AppErrors.backgroundGameViewIsNil  }
-            guard let foregroundGameView =  gameCoordinator.foregroundGameView else { throw AppErrors.foregroundGameViewIsNil  }
+            guard let backgroundGameView = gameCoordinator.backgroundGameView else { throw AppError.backgroundGameViewIsNil  }
+            guard let foregroundGameView =  gameCoordinator.foregroundGameView else { throw AppError.foregroundGameViewIsNil  }
             
             backgroundGameView.backgroundColor = UIColor.clear
             foregroundGameView.backgroundColor = UIColor.clear
@@ -215,14 +250,7 @@ class ViewController: UIViewController {
             
             print("something is nil")
         }
- 
+        
     }
     
-    // MARK: - Public Methods
-    
-//    public func presentTheScene02() {
-//        print("> The View Controller is about to present the Scene 02 with a SKTransition...")
-//        let transition = SKTransition.crossFade(withDuration: 0.5)
-//        gameView?.presentScene(scene02!, transition: transition)
-//    }
 }

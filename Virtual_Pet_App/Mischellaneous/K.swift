@@ -31,7 +31,9 @@ struct K {
     }
 }
 
-enum AppErrors: Error {
+enum AppError: Error {
+    case viewControllerIsNil
     case backgroundGameViewIsNil
     case foregroundGameViewIsNil
+    case mainSceneIsNil
 }
