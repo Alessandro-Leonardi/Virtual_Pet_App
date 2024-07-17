@@ -13,7 +13,13 @@ class MainScene: SKScene {
     
     static let defaultAnchorPoint = CGPoint(x: 0.5, y: 0.5)
     
+    override func didMove(to view: SKView) {
+        print("> MainScene.didMove(view:): ")
+    }
     
+    func setup() {
+        
+    }
     
     override init() {
         super.init()

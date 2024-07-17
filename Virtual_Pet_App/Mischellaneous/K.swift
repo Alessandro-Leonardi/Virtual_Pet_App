@@ -29,6 +29,12 @@ struct K {
         static var name = "Alessandro"
         
     }
+    
+    enum SKViewLayer {
+        case background
+        case foreground
+    }
+    
 }
 
 enum AppError: Error {

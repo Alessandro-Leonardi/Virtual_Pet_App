@@ -21,10 +21,69 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     
     var mainScene: MainScene?
     
+    var plaidEgg: PlaidEgg?
+    
+    // MARK: - Lifecycle
     
     func start() {
+        prepareForMainScene()
+        presentTheMainScene(at: .background)
+        
         self.setupGameLoop(timeInterval) //OBS: The gameLoop may be redundant because of SKScene.update()
     }
+    
+    // MARK: - MainScene Methods
+    
+    func prepareForMainScene() {
+        print(">> GameCoordinator.prepareForMainScene():")
+        
+        // mainScene
+        if self.mainScene == nil {
+            print("> Loading mainScene...")
+            self.mainScene = MainScene(size: CGSize(width: 300, height: 300), anchorPoint: MainScene.defaultAnchorPoint)
+            if mainScene != nil { print("> mainScene: OK!") }
+        } else { print("> mainScene: OK!") }
+        
+        // plaidEgg
+        if self.plaidEgg == nil {
+            print("> Loading plaidEgg...")
+            self.plaidEgg = PlaidEgg()
+            if plaidEgg != nil { print("> plaidEgg: OK!") }
+        } else { print("> plaidEgg: OK!") }
+        
+    }
+    
+    func presentTheMainScene(at layer: K.SKViewLayer) {
+        print("> GameCoordinator.presentTheMainScene() :")
+        
+        do {
+            guard let mainScene = self.mainScene else { throw AppError.mainSceneIsNil }
+            
+            mainScene.setup()
+            
+            switch layer {
+            case .background:
+                guard let backgroundGameView = self.backgroundGameView else { throw AppError.backgroundGameViewIsNil }
+                backgroundGameView.presentScene(mainScene)
+            case .foreground:
+                guard let foregroundGameView = self.foregroundGameView else { throw AppError.foregroundGameViewIsNil }
+                foregroundGameView.presentScene(mainScene)
+            }
+        }
+        catch AppError.backgroundGameViewIsNil {
+            print("> gameCoordinator.backgroundGameView is nil.")
+        }
+        catch AppError.mainSceneIsNil {
+            print("> gameCoordinator.mainScene is nil.")
+        }
+        catch {
+            print("> something went wrong at GameCoordinator.presentTheMainScene()")
+        }
+    }
+    
+    
+    
+    
     
     func setupGameLoop(_ timeInterval: TimeInterval) {
         gameLoopTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(gameLoop), userInfo: nil, repeats: true)
@@ -38,6 +97,10 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
         
     }
     
+    
+    
+    
+    
     override init(nibName: String?, bundle: Bundle?) {
         super.init(nibName: nibName, bundle: bundle)
     }
@@ -47,25 +110,6 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     }
     
 }
-
-
-
-// MARK: - Coordinator Extension
-//extension GameCoordinator: Coordinator {
-//    
-//    override var navigationController: UINavigationController? {
-//        get {
-//            
-//        }
-//        set {
-//            
-//        }
-//    }
-//    
-//    func start() {
-//        
-//    }
-//}
 
 
 // MARK: - Buttons Extension
