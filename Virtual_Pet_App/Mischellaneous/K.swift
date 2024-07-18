@@ -9,7 +9,7 @@ import Foundation
 
 struct K {
     enum Menu: Int, CaseIterable {
-        case main = 1
+        case main = 0
         case feed
         case light
         case play

@@ -17,7 +17,7 @@ class MenuManager {
     var buttonWasPressed: Bool = false
     var buttonValue: K.Menu = .main
     
-    var actualMenu: K.Menu = .main
+    var currentMenu: K.Menu = .main
     var selectedMenu: K.Menu = .main
     
     var timer: Timer?
@@ -28,18 +28,22 @@ class MenuManager {
 
     }
     @objc func backToMainPart2() {
-        actualMenu = K.Menu(rawValue: 1)!
+        currentMenu = K.Menu(rawValue: 1)!
         
-        print(actualMenu)
+        print(currentMenu)
     }
     
-    @objc func incrementSelectedMenu(isStartingFromMain: Bool, withValue value: Int = 1) {
-        var currentIndex = 0
-
-        func nextValue() -> K.Menu {
-            let nextValue = K.Menu.allCases[currentIndex]
-            currentIndex = (currentIndex + 1) % K.Menu.allCases.count
-            return nextValue
+    var currentIndex = 0
+    @objc func incrementSelectedMenu(isStartingFromMain: Bool = false, withValue value: Int = 1) {
+        if isStartingFromMain { currentIndex = 0 }
+        
+        currentIndex += value
+        
+        if (currentIndex < K.Menu.allCases.count) {
+            currentMenu = K.Menu.allCases[currentIndex]
+        } else {
+            let newIndex = currentIndex % K.Menu.allCases.count
+            currentMenu = K.Menu.allCases[newIndex]
         }
     }
     
@@ -54,4 +58,15 @@ class MenuManager {
         
     }
     
+}
+
+
+class EnumCycler {
+    private var currentIndex = 0
+
+    func nextValue() -> K.Menu {
+        let nextValue = K.Menu.allCases[currentIndex]
+        currentIndex = (currentIndex + 1) % K.Menu.allCases.count
+        return nextValue
+    }
 }

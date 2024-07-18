@@ -128,12 +128,9 @@ extension GameCoordinator {
     @objc func buttonAPressed(){
         print("A pressed")
         
-        switch menuManager.actualMenu {
-        case .main:
-            menuManager.incrementSelectedMenu(isStartingFromMain: <#T##Bool#>)
-        default:
-            menuManager.incrementSelectedMenu(isStartingFromMain: false)
-        }
+        menuManager.incrementSelectedMenu(isStartingFromMain: true,withValue: 7)
+        
+        print(menuManager.currentMenu)
     }
         
     
