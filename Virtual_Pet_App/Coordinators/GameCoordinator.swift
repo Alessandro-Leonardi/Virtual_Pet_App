@@ -126,16 +126,20 @@ extension GameCoordinator {
     
     
     @objc func buttonAPressed(){
-        print("A pressed")
-        
-        menuManager.incrementSelectedMenu(isStartingFromMain: true,withValue: 7)
-        
-        print(menuManager.currentMenu)
+//        print("A pressed")
+        menuManager.selectNextMenuItem()
     }
         
     
     @objc func buttonBPressed(){
         print("B pressed")
+        
+        
+        // Change if statement to switch-case statement once it's done.
+        if (menuManager.currentMenu == .main) { menuManager.goToLastMenu() }
+        else if ( menuManager.currentMenu == .main ) {  }
+        else { menuManager.goToLastMenu() }
+        
     }
     
     @objc func buttonCPressed(){
