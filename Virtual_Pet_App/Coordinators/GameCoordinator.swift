@@ -14,6 +14,8 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     static var defaultSize = CGSize(width: 300, height: 300)
     static var defaultFrame = CGRect(x: 0, y: 0, width: 300, height: 300)
     
+    let menuManager: MenuManager = MenuManager()
+    
     var secondsPassed: TimeInterval = 0.0
     var timeInterval: TimeInterval = 2.0
     var gameLoopTimer: Timer?
@@ -95,10 +97,10 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     
     @objc func gameLoop() {
         secondsPassed += timeInterval
-        print("gameLoop at (\(secondsPassed)s)")
+//        print("gameLoop at (\(secondsPassed)s)")
     }
     
-    func shallChangeSceneFor(_ scene: K.Scene) {
+    func shallChangeSceneFor(_ scene: K.Menu) {
         
     }
     
@@ -125,7 +127,15 @@ extension GameCoordinator {
     
     @objc func buttonAPressed(){
         print("A pressed")
+        
+        switch menuManager.actualMenu {
+        case .main:
+            menuManager.incrementSelectedMenu(isStartingFromMain: <#T##Bool#>)
+        default:
+            menuManager.incrementSelectedMenu(isStartingFromMain: false)
+        }
     }
+        
     
     @objc func buttonBPressed(){
         print("B pressed")
@@ -134,8 +144,5 @@ extension GameCoordinator {
     @objc func buttonCPressed(){
         print("C pressed")
     }
-    
-    
-    
     
 }
