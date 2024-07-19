@@ -22,6 +22,16 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     
     var viewController: UIViewController?
     
+    // Menu Controllers
+    var mainMenu: MainMenu! = nil
+    var feedMenu: FeedMenu! = nil
+    var lightMenu: LightMenu! = nil
+    var playMenu: PlayMenu! = nil
+    var duckMenu: DuckMenu! = nil
+    var helthMeterMenu: HelthMeterMenu! = nil
+    var disciplineMenu: DisciplineMenu! = nil
+    var attentionMenu: AttentionMenu! = nil
+    
     var backgroundGameView: SKView?
     var foregroundGameView: SKView?
     
@@ -34,6 +44,8 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     // MARK: - Lifecycle
     
     func start() {
+        loadMenuControllers()
+        
         prepareForMainScene()
         presentTheMainScene(at: .background)
         
@@ -116,6 +128,74 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     func shallChangeSceneFor(_ scene: K.Menu) {
         
     }
+    
+    // MARK: Load Menu Controllers Method
+    func loadMenuControllers() {
+        do {
+            guard let mainMenu = mainMenu else { throw AppError.MainMenuIsNil }
+            
+            guard let feedMenu = feedMenu else { throw AppError.FeedMenuIsNil }
+            
+            guard let lightMenu = lightMenu else { throw AppError.LightMenuIsNil }
+            
+            guard let playMenu = playMenu else { throw AppError.PlayMenuIsNil }
+            
+            guard let duckMenu = duckMenu else { throw AppError.DuckMenuIsNil }
+            
+            guard let helthMeterMenu = helthMeterMenu else { throw AppError.HelthMeterMenuIsNil }
+            
+            guard let disciplineMenu = disciplineMenu else { throw AppError.DisciplineMenuIsNil }
+            
+            guard let attentionMenu = attentionMenu else { throw AppError.AttentionMenuIsNil }
+            
+            
+            print("> loadMenuControllers > All menus loaded properly!")
+        
+        }
+        catch AppError.MainMenuIsNil {
+            mainMenu = MainMenu(with: self)
+            if let mainMenu = mainMenu { print("> loadMenuControllers > mainMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch AppError.FeedMenuIsNil {
+            feedMenu = FeedMenu(with: self)
+            if let feedMenu = feedMenu { print("> loadMenuControllers > feedMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch AppError.LightMenuIsNil {
+            lightMenu = LightMenu(with: self)
+            if let lightMenu = lightMenu { print("> loadMenuControllers > lightMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch AppError.PlayMenuIsNil {
+            playMenu = PlayMenu(with: self)
+            if let playMenu = playMenu { print("> loadMenuControllers > playMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch AppError.DuckMenuIsNil {
+            duckMenu = DuckMenu(with: self)
+            if let duckMenu = duckMenu { print("> loadMenuControllers > duckMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch AppError.HelthMeterMenuIsNil {
+            helthMeterMenu = HelthMeterMenu(with: self)
+            if let helthMeterMenu = helthMeterMenu { print("> loadMenuControllers > helthMeterMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch AppError.DisciplineMenuIsNil {
+            disciplineMenu = DisciplineMenu(with: self)
+            if let disciplineMenu = disciplineMenu { print("> loadMenuControllers > disciplineMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch AppError.AttentionMenuIsNil {
+            attentionMenu = AttentionMenu(with: self)
+            if let attentionMenu = attentionMenu { print("> loadMenuControllers > attentionMenu loaded properly!") }
+            loadMenuControllers()
+        }
+        catch {
+            print("> Something went wrong at loadMenuControllers!")
+        }
+    }
 
     
     override init(nibName: String?, bundle: Bundle?) {
@@ -135,9 +215,7 @@ extension GameCoordinator {
     
     @objc func buttonAPressed(){
 //        print("A pressed")
-        
-        
-        
+
         if (menuManager.currentMenu == .main) { menuManager.selectNextMenuItem(); menuManager.selectMain(in: 3.0) }
         if (menuManager.currentMenu == .feed) {  }
         
@@ -164,8 +242,7 @@ extension GameCoordinator {
         
 
     @objc func buttonBPressed(){
-        print("B pressed")
-        
+//        print("B pressed")
         switch menuManager.currentMenu {
             
         case .main:
@@ -200,7 +277,7 @@ extension GameCoordinator {
     }
     
     @objc func buttonCPressed(){
-        print("C pressed")
+//        print("C pressed")
         
         switch menuManager.currentMenu {
             

@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		973B699F2C4A89A00090B6B0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B699E2C4A89A00090B6B0 /* Food.swift */; };
+		973B69A22C4A9CE30090B6B0 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69A12C4A9CE30090B6B0 /* MainMenu.swift */; };
+		973B69A52C4A9F9F0090B6B0 /* FeedMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69A42C4A9F9F0090B6B0 /* FeedMenu.swift */; };
+		973B69A72C4A9FB80090B6B0 /* LightMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69A62C4A9FB80090B6B0 /* LightMenu.swift */; };
+		973B69A92C4A9FD70090B6B0 /* PlayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69A82C4A9FD70090B6B0 /* PlayMenu.swift */; };
+		973B69AB2C4AA05B0090B6B0 /* DuckMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69AA2C4AA05B0090B6B0 /* DuckMenu.swift */; };
+		973B69AD2C4AA0740090B6B0 /* HelthMeterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69AC2C4AA0740090B6B0 /* HelthMeterMenu.swift */; };
+		973B69AF2C4AA08E0090B6B0 /* DisciplineMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69AE2C4AA08E0090B6B0 /* DisciplineMenu.swift */; };
+		973B69B12C4AA0A20090B6B0 /* AttentionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973B69B02C4AA0A20090B6B0 /* AttentionMenu.swift */; };
 		97B904002C46B21F00F5BFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B903FF2C46B21F00F5BFDA /* AppDelegate.swift */; };
 		97B904022C46B21F00F5BFDA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904012C46B21F00F5BFDA /* SceneDelegate.swift */; };
 		97B904042C46B21F00F5BFDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904032C46B21F00F5BFDA /* ViewController.swift */; };
@@ -28,6 +36,14 @@
 
 /* Begin PBXFileReference section */
 		973B699E2C4A89A00090B6B0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		973B69A12C4A9CE30090B6B0 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		973B69A42C4A9F9F0090B6B0 /* FeedMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMenu.swift; sourceTree = "<group>"; };
+		973B69A62C4A9FB80090B6B0 /* LightMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightMenu.swift; sourceTree = "<group>"; };
+		973B69A82C4A9FD70090B6B0 /* PlayMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMenu.swift; sourceTree = "<group>"; };
+		973B69AA2C4AA05B0090B6B0 /* DuckMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuckMenu.swift; sourceTree = "<group>"; };
+		973B69AC2C4AA0740090B6B0 /* HelthMeterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelthMeterMenu.swift; sourceTree = "<group>"; };
+		973B69AE2C4AA08E0090B6B0 /* DisciplineMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineMenu.swift; sourceTree = "<group>"; };
+		973B69B02C4AA0A20090B6B0 /* AttentionMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttentionMenu.swift; sourceTree = "<group>"; };
 		97B903FC2C46B21F00F5BFDA /* Virtual_Pet_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Virtual_Pet_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97B903FF2C46B21F00F5BFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97B904012C46B21F00F5BFDA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +75,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		973B69A02C4A9CCB0090B6B0 /* MenuControllers */ = {
+			isa = PBXGroup;
+			children = (
+				973B69A12C4A9CE30090B6B0 /* MainMenu.swift */,
+				973B69A42C4A9F9F0090B6B0 /* FeedMenu.swift */,
+				973B69A62C4A9FB80090B6B0 /* LightMenu.swift */,
+				973B69A82C4A9FD70090B6B0 /* PlayMenu.swift */,
+				973B69AA2C4AA05B0090B6B0 /* DuckMenu.swift */,
+				973B69AC2C4AA0740090B6B0 /* HelthMeterMenu.swift */,
+				973B69AE2C4AA08E0090B6B0 /* DisciplineMenu.swift */,
+				973B69B02C4AA0A20090B6B0 /* AttentionMenu.swift */,
+			);
+			path = MenuControllers;
+			sourceTree = "<group>";
+		};
+		973B69A32C4A9CF40090B6B0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				97B904292C47004200F5BFDA /* TestViewController.swift */,
+				97B904032C46B21F00F5BFDA /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		97B903F32C46B21F00F5BFDA = {
 			isa = PBXGroup;
 			children = (
@@ -115,8 +155,8 @@
 		97B904152C46C49000F5BFDA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				97B904292C47004200F5BFDA /* TestViewController.swift */,
-				97B904032C46B21F00F5BFDA /* ViewController.swift */,
+				973B69A02C4A9CCB0090B6B0 /* MenuControllers */,
+				973B69A32C4A9CF40090B6B0 /* ViewControllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -237,16 +277,24 @@
 			files = (
 				97B904212C46FDC100F5BFDA /* PetEgg.swift in Sources */,
 				97B904252C46FE3B00F5BFDA /* PlaidEgg.swift in Sources */,
+				973B69A52C4A9F9F0090B6B0 /* FeedMenu.swift in Sources */,
 				97B9042A2C47004200F5BFDA /* TestViewController.swift in Sources */,
 				97B904042C46B21F00F5BFDA /* ViewController.swift in Sources */,
+				973B69B12C4AA0A20090B6B0 /* AttentionMenu.swift in Sources */,
 				97B904002C46B21F00F5BFDA /* AppDelegate.swift in Sources */,
+				973B69A92C4A9FD70090B6B0 /* PlayMenu.swift in Sources */,
 				97B904232C46FE1600F5BFDA /* PetEggInfo.swift in Sources */,
 				97B904282C46FE8200F5BFDA /* Pet.swift in Sources */,
 				973B699F2C4A89A00090B6B0 /* Food.swift in Sources */,
 				97B9041B2C46C95A00F5BFDA /* Coordinator.swift in Sources */,
 				97B9041E2C46C9F800F5BFDA /* MainScene.swift in Sources */,
+				973B69AB2C4AA05B0090B6B0 /* DuckMenu.swift in Sources */,
+				973B69A72C4A9FB80090B6B0 /* LightMenu.swift in Sources */,
+				973B69AD2C4AA0740090B6B0 /* HelthMeterMenu.swift in Sources */,
+				973B69A22C4A9CE30090B6B0 /* MainMenu.swift in Sources */,
 				97B9042C2C47007300F5BFDA /* K.swift in Sources */,
 				97B904192C46C8F200F5BFDA /* GameCoordinator.swift in Sources */,
+				973B69AF2C4AA08E0090B6B0 /* DisciplineMenu.swift in Sources */,
 				97B9042E2C470BF000F5BFDA /* MenuManager.swift in Sources */,
 				97B904022C46B21F00F5BFDA /* SceneDelegate.swift in Sources */,
 			);

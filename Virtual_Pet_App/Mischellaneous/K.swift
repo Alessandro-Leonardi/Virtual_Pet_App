@@ -51,4 +51,14 @@ enum AppError: Error {
     case plaidEggIsNil
     case plaidEggSpriteIsNil
     case plaidEggStandingAnimationIsNil
+    
+    case MainMenuIsNil
+    case FeedMenuIsNil
+    case LightMenuIsNil
+    case PlayMenuIsNil
+    case DuckMenuIsNil
+    case HelthMeterMenuIsNil
+    case DisciplineMenuIsNil
+    case AttentionMenuIsNil
 }
+
