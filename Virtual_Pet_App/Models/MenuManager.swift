@@ -87,13 +87,109 @@ class MenuManager {
     }
     
     
-    // MARK: Feed Menu Methods
-    func enterSelectFoodMode() {
-        invalidateTimer()
-        
-        
+    // MARK: Main Menu Methods
+    func buttonAPressedAtMainMenu() {
         
     }
+    func buttonBPressedAtMainMenu() {
+        
+    }
+    func buttonCPressedAtMainMenu() {
+        
+    }
+    
+    
+    // MARK: Feed Menu Methods
+    func buttonAPressedAtFeedMenu() {
+        
+    }
+    func buttonBPressedAtFeedMenu() {
+        
+    }
+    func buttonCPressedAtFeedMenu() {
+        
+    }
+    
+    
+    // MARK: Light Menu Methods
+    func buttonAPressedAtLightMenu() {
+        
+    }
+    func buttonBPressedAtLightMenu() {
+        
+    }
+    func buttonCPressedAtLightMenu() {
+        
+    }
+    
+    
+    // MARK: Play Menu Methods
+    func buttonAPressedAtPlayMenu() {
+        
+    }
+    func buttonBPressedAtPlayMenu() {
+        
+    }
+    func buttonCPressedAtPlayMenu() {
+        
+    }
+    
+    
+    // MARK: Duck Menu Methods
+    func buttonAPressedAtDuckMenu() {
+        
+    }
+    func buttonBPressedAtDuckMenu() {
+        
+    }
+    func buttonCPressedAtDuckMenu() {
+        
+    }
+    
+    
+    
+    // MARK: HelthMeter Menu Methods
+    func buttonAPressedAtHelthMeterMenu() {
+        
+    }
+    func buttonBPressedAtHelthMeterMenu() {
+        
+    }
+    func buttonCPressedAtHelthMeterMenu() {
+        
+    }
+    
+    
+    // MARK: Discipline Menu Methods
+    func buttonAPressedAtDisciplineMenu() {
+        
+    }
+    func buttonBPressedAtDisciplineMenu() {
+        
+    }
+    func buttonCPressedAtDisciplineMenu() {
+        
+    }
+    
+    
+    // MARK: Attention Menu Methods
+    func buttonAPressedAtAttentionMenu() {
+        
+    }
+    func buttonBPressedAtAttentionMenu() {
+        
+    }
+    func buttonCPressedAtAttentionMenu() {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     init() {
         

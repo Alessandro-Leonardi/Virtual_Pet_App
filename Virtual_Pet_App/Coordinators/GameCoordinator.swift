@@ -135,21 +135,91 @@ extension GameCoordinator {
     
     @objc func buttonAPressed(){
 //        print("A pressed")
-        menuManager.selectNextMenuItem()
-        menuManager.selectMain(in: 3.0)
+        
+        
+        
+        if (menuManager.currentMenu == .main) { menuManager.selectNextMenuItem(); menuManager.selectMain(in: 3.0) }
+        if (menuManager.currentMenu == .feed) {  }
+        
+        switch menuManager.currentMenu {
+            
+        case .main:
+            menuManager.buttonAPressedAtMainMenu()
+        case .feed:
+            menuManager.buttonAPressedAtFeedMenu()
+        case .light:
+            menuManager.buttonAPressedAtLightMenu()
+        case .play:
+            menuManager.buttonAPressedAtPlayMenu()
+        case .duck:
+            menuManager.buttonAPressedAtDuckMenu()
+        case .helthMeter:
+            menuManager.buttonAPressedAtHelthMeterMenu()
+        case .discipline:
+            menuManager.buttonAPressedAtDisciplineMenu()
+        case .attention:
+            menuManager.buttonAPressedAtAttentionMenu()
+        }
     }
         
 
     @objc func buttonBPressed(){
         print("B pressed")
         
+        switch menuManager.currentMenu {
+            
+        case .main:
+            menuManager.buttonBPressedAtMainMenu()
+        case .feed:
+            menuManager.buttonBPressedAtFeedMenu()
+        case .light:
+            menuManager.buttonBPressedAtLightMenu()
+        case .play:
+            menuManager.buttonBPressedAtPlayMenu()
+        case .duck:
+            menuManager.buttonBPressedAtDuckMenu()
+        case .helthMeter:
+            menuManager.buttonBPressedAtHelthMeterMenu()
+        case .discipline:
+            menuManager.buttonBPressedAtDisciplineMenu()
+        case .attention:
+            menuManager.buttonBPressedAtAttentionMenu()
+        }
+        
         // Change if statement to switch-case statement once it's done.
-        if (menuManager.currentMenu == .main) { menuManager.goToLastMenu() }
-        else if ( menuManager.currentMenu == .feed ) { menuManager.enterSelectFoodMode() }
-        else { menuManager.goToLastMenu() }
+        if (menuManager.currentMenu == .main) {
+            if(menuManager.selectedMenu == .feed) { menuManager.changeTheMenu(to: .feed) }
+            else { menuManager.goToLastMenu() }
+        }
+        else if ( menuManager.currentMenu == .feed ) {
+//            menuManager.enterSelectFoodMode()
+        }
+        else {
+            menuManager.goToLastMenu()
+        }
     }
     
     @objc func buttonCPressed(){
         print("C pressed")
+        
+        switch menuManager.currentMenu {
+            
+        case .main:
+            menuManager.buttonCPressedAtMainMenu()
+        case .feed:
+            menuManager.buttonCPressedAtFeedMenu()
+        case .light:
+            menuManager.buttonCPressedAtLightMenu()
+        case .play:
+            menuManager.buttonCPressedAtPlayMenu()
+        case .duck:
+            menuManager.buttonCPressedAtDuckMenu()
+        case .helthMeter:
+            menuManager.buttonCPressedAtHelthMeterMenu()
+        case .discipline:
+            menuManager.buttonCPressedAtDisciplineMenu()
+        case .attention:
+            menuManager.buttonCPressedAtAttentionMenu()
+        }
     }
 }
