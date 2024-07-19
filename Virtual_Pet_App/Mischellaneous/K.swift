@@ -14,7 +14,7 @@ struct K {
         case light
         case play
         case duck
-        case helthMeter
+        case helthMeter     // Consider taking of this menu and accessing the info when pressing B at the main menu.
         case discipline
         case attention
     }

@@ -25,6 +25,8 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     var backgroundGameView: SKView?
     var foregroundGameView: SKView?
     
+    var foodBasket: [Food] = []
+    
     var mainScene: MainScene?
     
     var plaidEgg: PlaidEgg?
@@ -57,6 +59,17 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
             if plaidEgg != nil { print("> plaidEgg: OK!") }
         } else { print("> plaidEgg: OK!") }
         
+        // foodBasket
+        let pieceOfCakeTaste = TasteCategory(sweet: 90, sour: 10, salty: 2, bitter: 5, umami: 10)
+        let piece_of_cake = Food(name: "Piece of Cake", calories: 260, taste: pieceOfCakeTaste)
+        let breadTaste = TasteCategory(sweet: 10, sour: 5, salty: 10, bitter: 2, umami: 8)
+        let bread = Food(name: "Bread", calories: 40, taste: breadTaste)
+        foodBasket.append(piece_of_cake)
+        foodBasket.append(bread)
+        
+        print(foodBasket)
+        
+        foodBasket.append(piece_of_cake)
     }
     
     func presentTheMainScene(at layer: K.SKViewLayer) {
@@ -103,19 +116,16 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     func shallChangeSceneFor(_ scene: K.Menu) {
         
     }
-    
-    
-    
-    
+
     
     override init(nibName: String?, bundle: Bundle?) {
         super.init(nibName: nibName, bundle: bundle)
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 
@@ -123,27 +133,23 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
 
 extension GameCoordinator {
     
-    
-    
     @objc func buttonAPressed(){
 //        print("A pressed")
         menuManager.selectNextMenuItem()
+        menuManager.selectMain(in: 3.0)
     }
         
-    
+
     @objc func buttonBPressed(){
         print("B pressed")
         
-        
         // Change if statement to switch-case statement once it's done.
         if (menuManager.currentMenu == .main) { menuManager.goToLastMenu() }
-        else if ( menuManager.currentMenu == .main ) {  }
+        else if ( menuManager.currentMenu == .feed ) { menuManager.enterSelectFoodMode() }
         else { menuManager.goToLastMenu() }
-        
     }
     
     @objc func buttonCPressed(){
         print("C pressed")
     }
-    
 }

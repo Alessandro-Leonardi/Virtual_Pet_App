@@ -21,20 +21,26 @@ class MenuManager {
     var lastMenu: K.Menu = .main
     var currentMenu: K.Menu = .main
     
-    var timer: Timer?
-    func backToMain(in seconds: TimeInterval) {
-        if (seconds > 0.1){
-            timer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(backToMainPart2), userInfo: nil, repeats: false)
-        } else { backToMainPart2() }
+    // This method shall evolve into "quittingSelectionMode"
+    var timer: Timer? = nil
+    func selectMain(in seconds: TimeInterval) {
+        timer?.invalidate()
 
+        if (seconds > 0.1){
+            timer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(selectMainPart2), userInfo: nil, repeats: false)
+        } else {
+            selectTheMenu(.main)
+        }
     }
-    @objc func backToMainPart2() {
-        currentMenu = K.Menu(rawValue: 1)!
-        
-        print(currentMenu)
+    @objc func selectMainPart2() {
+            if let timer = timer {
+                if (timer.isValid) { selectTheMenu(.main) } else { print("> Timer is invalid.") }
+            } else { print("> Timer is nil.") }
     }
-    
-    
+    func invalidateTimer() {
+        if let timer = timer { timer.invalidate() }
+    }
+
     // MARK: - methods triggered by the buttons:
     
     var currentIndex = 0
@@ -55,8 +61,8 @@ class MenuManager {
     var selectedIndex = 0
     func selectNextMenuItem() {
         selectedIndex += 1
-        if (selectedIndex + 1 >= K.Menu.allCases.count) { selectTheMenu(to: .main); selectedIndex = 0 }
-        else { selectTheMenu(to: K.Menu.allCases[selectedIndex]) }
+        if (selectedIndex + 1 >= K.Menu.allCases.count) { selectTheMenu(.main); selectedIndex = 0 }
+        else { selectTheMenu(K.Menu.allCases[selectedIndex]) }
     }
     
    
@@ -71,13 +77,22 @@ class MenuManager {
         currentMenu = menu
         print("> Current Menu: \(currentMenu), Last Menu: \(lastMenu), Selected Menu: \(selectedMenu)")
     }
-    func selectTheMenu(to menu: K.Menu) {
+    func selectTheMenu(_ menu: K.Menu) {
         selectedMenu = menu
         print("> Current Menu: \(currentMenu), Last Menu: \(lastMenu), Selected Menu: \(selectedMenu)")
     }
     
     func pressed() {
         shallUpdateScene = true
+    }
+    
+    
+    // MARK: Feed Menu Methods
+    func enterSelectFoodMode() {
+        invalidateTimer()
+        
+        
+        
     }
     
     init() {
