@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     private var containerLayoutGuide = UILayoutGuide()
     private var buttonsContainerLayoutGuide = UILayoutGuide()
     
-    public var gameCoordinator = GameCoordinator()
+    public var gameCoordinator: GameCoordinator!
     
     private var buttonA: UIButton?
     private var buttonB: UIButton?
@@ -28,6 +28,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .black
+        
+        gameCoordinator = GameCoordinator(viewController: self, nibName: nil, bundle: nil)
+        
         setupContainerLayoutGuide()
         
         setupButtonsContainer(withConstant: -100)

@@ -18,13 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         
-        let isInTestMode: Bool = true
+        let isInTestMode: Bool = false
         
         switch isInTestMode {
-        case true: guard let _ = (scene as? UIWindowScene) else { return }
+        case true: window?.rootViewController = TestViewController()
 
-        case false:
-            window?.rootViewController = TestViewController()
+        case false: guard let _ = (scene as? UIWindowScene) else { return }
         }
 
     }

@@ -27,13 +27,16 @@ class TestViewController: UIViewController{
     var plaidEgg: PlaidEgg = PlaidEgg(position: PlaidEgg.defaultPosition, anchorPoint: PlaidEgg.defaultAnchorPoint)
     
     var loopStandingAnimation: SKAction?
-    var myTransition: SKTransition = SKTransition.moveIn(with: .up, duration: 2.0)
+    var myTransition: SKTransition = SKTransition.moveIn(with: .up, duration: 30.0)
+    
+    var mySpriteNode = SKSpriteNode()
+    let action = SKAction.fadeOut(withDuration: 3.0)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .systemMint
+        self.view.backgroundColor = .white
         
         loopStandingAnimation = SKAction.repeatForever(plaidEgg.standingAnimation!)
         
@@ -66,18 +69,33 @@ class TestViewController: UIViewController{
         
         foregroundSKView.backgroundColor = UIColor.clear
         foregroundSKView.allowsTransparency = true
-        foregroundSKSceneA.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+//        foregroundSKSceneA.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+        foregroundSKSceneA.backgroundColor = UIColor.clear
         foregroundSKSceneB.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
         
-        let mySpriteNode = SKSpriteNode(color: .systemYellow, size: foregroundSKSceneA.size)
+        
         foregroundSKSceneA.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        mySpriteNode = SKSpriteNode(color: .white, size: foregroundSKSceneA.size)
         mySpriteNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         foregroundSKSceneA.addChild(mySpriteNode)
-        let action = SKAction.fadeOut(withDuration: 3.0)
+
+        print("> End of view did load")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let _: Timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(triggerSpriteAction), userInfo: nil, repeats: false)
+
+        print("> End of viewDidAppear")
+    }
+    
+    
+    @objc func triggerSpriteAction() {
+        
         mySpriteNode.run(action)
-        
-        
+        print("> End of triggerSpriteAction")
     }
     
 
 }
+
+

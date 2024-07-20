@@ -14,7 +14,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     static var defaultSize = CGSize(width: 300, height: 300)
     static var defaultFrame = CGRect(x: 0, y: 0, width: 300, height: 300)
     
-    let menuManager: MenuManager = MenuManager()
+    var menuManager: MenuManager!
     
     var secondsPassed: TimeInterval = 0.0
     var timeInterval: TimeInterval = 2.0
@@ -44,6 +44,9 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     // MARK: - Lifecycle
     
     func start() {
+        menuManager = MenuManager(gameCoordinator: self)
+        menuManager.start()
+        
         loadMenuControllers()
         
         prepareForMainScene()
@@ -196,6 +199,10 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
             print("> Something went wrong at loadMenuControllers!")
         }
     }
+    
+    convenience init(viewController: UIViewController, nibName: String?, bundle: Bundle?) {
+        self.init(nibName: nibName, bundle: bundle)
+    }
 
     
     override init(nibName: String?, bundle: Bundle?) {
@@ -215,9 +222,6 @@ extension GameCoordinator {
     
     @objc func buttonAPressed(){
 //        print("A pressed")
-
-        if (menuManager.currentMenu == .main) { menuManager.selectNextMenuItem(); menuManager.selectMain(in: 3.0) }
-        if (menuManager.currentMenu == .feed) {  }
         
         switch menuManager.currentMenu {
             
@@ -263,17 +267,17 @@ extension GameCoordinator {
             menuManager.buttonBPressedAtAttentionMenu()
         }
         
-        // Change if statement to switch-case statement once it's done.
-        if (menuManager.currentMenu == .main) {
-            if(menuManager.selectedMenu == .feed) { menuManager.changeTheMenu(to: .feed) }
-            else { menuManager.goToLastMenu() }
-        }
-        else if ( menuManager.currentMenu == .feed ) {
-//            menuManager.enterSelectFoodMode()
-        }
-        else {
-            menuManager.goToLastMenu()
-        }
+//        // Change if statement to switch-case statement once it's done.
+//        if (menuManager.currentMenu == .main) {
+//            if(menuManager.selectedMenu == .feed) { menuManager.changeTheMenu(to: .feed) }
+//            else { menuManager.goToLastMenu() }
+//        }
+//        else if ( menuManager.currentMenu == .feed ) {
+////            menuManager.enterSelectFoodMode()
+//        }
+//        else {
+//            menuManager.goToLastMenu()
+//        }
     }
     
     @objc func buttonCPressed(){

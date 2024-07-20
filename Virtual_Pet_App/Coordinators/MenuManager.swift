@@ -9,6 +9,8 @@ import Foundation
 
 class MenuManager {
     
+    let gameCoordinator: GameCoordinator
+    
     var lastButtonPressed: K.Button! = nil
     var lastScene: K.Menu! = nil
     
@@ -20,6 +22,14 @@ class MenuManager {
     var selectedMenu: K.Menu = .main
     var lastMenu: K.Menu = .main
     var currentMenu: K.Menu = .main
+    
+    var foodMenu: FoodMenu!
+    
+    func start() {
+        foodMenu = FoodMenu(menuManager: self, gameCoordinator: gameCoordinator)
+        if let foodMenu = foodMenu { foodMenu.start() }
+    }
+    
     
     // This method shall evolve into "quittingSelectionMode"
     var timer: Timer? = nil
@@ -73,6 +83,7 @@ class MenuManager {
 
     
     func changeTheMenu(to menu: K.Menu){
+        invalidateTimer()
         lastMenu = currentMenu
         currentMenu = menu
         print("> Current Menu: \(currentMenu), Last Menu: \(lastMenu), Selected Menu: \(selectedMenu)")
@@ -89,10 +100,12 @@ class MenuManager {
     
     // MARK: Main Menu Methods
     func buttonAPressedAtMainMenu() {
-        
+        print("> Button A pressed at the main menu ")
+        selectNextMenuItem()
+        selectMain(in: 3.0)
     }
     func buttonBPressedAtMainMenu() {
-        
+        changeTheMenu(to: selectedMenu)
     }
     func buttonCPressedAtMainMenu() {
         
@@ -101,13 +114,13 @@ class MenuManager {
     
     // MARK: Feed Menu Methods
     func buttonAPressedAtFeedMenu() {
-        
+        foodMenu.selectFood()
     }
     func buttonBPressedAtFeedMenu() {
         
     }
     func buttonCPressedAtFeedMenu() {
-        
+        changeTheMenu(to: .main)
     }
     
     
@@ -119,7 +132,7 @@ class MenuManager {
         
     }
     func buttonCPressedAtLightMenu() {
-        
+        changeTheMenu(to: .main)
     }
     
     
@@ -131,7 +144,7 @@ class MenuManager {
         
     }
     func buttonCPressedAtPlayMenu() {
-        
+        changeTheMenu(to: .main)
     }
     
     
@@ -143,7 +156,7 @@ class MenuManager {
         
     }
     func buttonCPressedAtDuckMenu() {
-        
+        changeTheMenu(to: .main)
     }
     
     
@@ -156,7 +169,7 @@ class MenuManager {
         
     }
     func buttonCPressedAtHelthMeterMenu() {
-        
+        changeTheMenu(to: .main)
     }
     
     
@@ -168,7 +181,7 @@ class MenuManager {
         
     }
     func buttonCPressedAtDisciplineMenu() {
-        
+        changeTheMenu(to: .main)
     }
     
     
@@ -180,7 +193,7 @@ class MenuManager {
         
     }
     func buttonCPressedAtAttentionMenu() {
-        
+        changeTheMenu(to: .main)
     }
     
     
@@ -191,7 +204,9 @@ class MenuManager {
     
     
     
-    init() {
+    init(gameCoordinator: GameCoordinator) {
+        self.gameCoordinator = gameCoordinator
+        
         
     }
     
