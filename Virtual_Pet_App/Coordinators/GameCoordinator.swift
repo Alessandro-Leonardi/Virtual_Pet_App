@@ -17,7 +17,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     var menuManager: MenuManager!
     
     var secondsPassed: TimeInterval = 0.0
-    var timeInterval: TimeInterval = 2.0
+    var timeInterval: TimeInterval = 1.0
     var gameLoopTimer: Timer?
     
     var viewController: UIViewController?
@@ -84,7 +84,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
         
         print(foodBasket)
         
-        foodBasket.append(piece_of_cake)
+        
     }
     
     func presentTheMainScene(at layer: K.SKViewLayer) {
@@ -126,6 +126,18 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     @objc func gameLoop() {
         secondsPassed += timeInterval
 //        print("gameLoop at (\(secondsPassed)s)")
+        
+        decreasePetEnergy(every: 2.0)
+    }
+    
+    func decreasePetEnergy(every seconds: TimeInterval) {
+        if (secondsPassed.truncatingRemainder(dividingBy: seconds) == 0 ) {
+            if let plaidEgg = plaidEgg {
+                plaidEgg.hungry -= 1
+                
+                print("> Pet hungry at \(secondsPassed) is \(plaidEgg.hungry)")
+            }
+        }
     }
     
     func shallChangeSceneFor(_ scene: K.Menu) {
@@ -135,21 +147,21 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     // MARK: Load Menu Controllers Method
     func loadMenuControllers() {
         do {
-            guard let mainMenu = mainMenu else { throw AppError.MainMenuIsNil }
+            guard mainMenu == nil else { throw AppError.MainMenuIsNil }
             
-            guard let feedMenu = feedMenu else { throw AppError.FeedMenuIsNil }
+            guard feedMenu == nil else { throw AppError.FeedMenuIsNil }
             
-            guard let lightMenu = lightMenu else { throw AppError.LightMenuIsNil }
+            guard lightMenu == nil else { throw AppError.LightMenuIsNil }
             
-            guard let playMenu = playMenu else { throw AppError.PlayMenuIsNil }
+            guard playMenu == nil else { throw AppError.PlayMenuIsNil }
             
-            guard let duckMenu = duckMenu else { throw AppError.DuckMenuIsNil }
+            guard duckMenu == nil else { throw AppError.DuckMenuIsNil }
             
-            guard let helthMeterMenu = helthMeterMenu else { throw AppError.HelthMeterMenuIsNil }
+            guard helthMeterMenu == nil else { throw AppError.HelthMeterMenuIsNil }
             
-            guard let disciplineMenu = disciplineMenu else { throw AppError.DisciplineMenuIsNil }
+            guard disciplineMenu == nil else { throw AppError.DisciplineMenuIsNil }
             
-            guard let attentionMenu = attentionMenu else { throw AppError.AttentionMenuIsNil }
+            guard attentionMenu == nil else { throw AppError.AttentionMenuIsNil }
             
             
             print("> loadMenuControllers > All menus loaded properly!")
@@ -157,42 +169,42 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
         }
         catch AppError.MainMenuIsNil {
             mainMenu = MainMenu(with: self)
-            if let mainMenu = mainMenu { print("> loadMenuControllers > mainMenu loaded properly!") }
+            if  mainMenu != nil { print("> loadMenuControllers > mainMenu loaded properly!") }
             loadMenuControllers()
         }
         catch AppError.FeedMenuIsNil {
             feedMenu = FeedMenu(with: self)
-            if let feedMenu = feedMenu { print("> loadMenuControllers > feedMenu loaded properly!") }
+            if feedMenu != nil { print("> loadMenuControllers > feedMenu loaded properly!") }
             loadMenuControllers()
         }
         catch AppError.LightMenuIsNil {
             lightMenu = LightMenu(with: self)
-            if let lightMenu = lightMenu { print("> loadMenuControllers > lightMenu loaded properly!") }
+            if lightMenu != nil { print("> loadMenuControllers > lightMenu loaded properly!") }
             loadMenuControllers()
         }
         catch AppError.PlayMenuIsNil {
             playMenu = PlayMenu(with: self)
-            if let playMenu = playMenu { print("> loadMenuControllers > playMenu loaded properly!") }
+            if playMenu != nil { print("> loadMenuControllers > playMenu loaded properly!") }
             loadMenuControllers()
         }
         catch AppError.DuckMenuIsNil {
             duckMenu = DuckMenu(with: self)
-            if let duckMenu = duckMenu { print("> loadMenuControllers > duckMenu loaded properly!") }
+            if duckMenu != nil { print("> loadMenuControllers > duckMenu loaded properly!") }
             loadMenuControllers()
         }
         catch AppError.HelthMeterMenuIsNil {
             helthMeterMenu = HelthMeterMenu(with: self)
-            if let helthMeterMenu = helthMeterMenu { print("> loadMenuControllers > helthMeterMenu loaded properly!") }
+            if helthMeterMenu != nil { print("> loadMenuControllers > helthMeterMenu loaded properly!") }
             loadMenuControllers()
         }
         catch AppError.DisciplineMenuIsNil {
             disciplineMenu = DisciplineMenu(with: self)
-            if let disciplineMenu = disciplineMenu { print("> loadMenuControllers > disciplineMenu loaded properly!") }
+            if disciplineMenu != nil { print("> loadMenuControllers > disciplineMenu loaded properly!") }
             loadMenuControllers()
         }
         catch AppError.AttentionMenuIsNil {
             attentionMenu = AttentionMenu(with: self)
-            if let attentionMenu = attentionMenu { print("> loadMenuControllers > attentionMenu loaded properly!") }
+            if attentionMenu != nil { print("> loadMenuControllers > attentionMenu loaded properly!") }
             loadMenuControllers()
         }
         catch {
@@ -267,17 +279,6 @@ extension GameCoordinator {
             menuManager.buttonBPressedAtAttentionMenu()
         }
         
-//        // Change if statement to switch-case statement once it's done.
-//        if (menuManager.currentMenu == .main) {
-//            if(menuManager.selectedMenu == .feed) { menuManager.changeTheMenu(to: .feed) }
-//            else { menuManager.goToLastMenu() }
-//        }
-//        else if ( menuManager.currentMenu == .feed ) {
-////            menuManager.enterSelectFoodMode()
-//        }
-//        else {
-//            menuManager.goToLastMenu()
-//        }
     }
     
     @objc func buttonCPressed(){

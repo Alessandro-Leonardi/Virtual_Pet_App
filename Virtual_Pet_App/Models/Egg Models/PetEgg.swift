@@ -11,6 +11,14 @@ import SpriteKit
 
 class PetEgg {
     
+    // helthMeter
+    var hungry: Int = 70 {
+        willSet {
+//            print("> hungry willSet was triggered.")
+            if newValue > 100 { self.hungry = 100 } else if newValue < 0 { self.hungry = 0 }
+        }
+    }
+    
     // age and ripness info
     var degreeOfRipness: Float = 0
     

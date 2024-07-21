@@ -10,8 +10,13 @@ import Foundation
 
 struct Food {
     let name: String
-    let calories: Int
+    var calories: Int {
+        willSet {
+            if newValue < 0 { self.calories = 1 }
+        }
+    }
     let taste: TasteCategory
+//    let type: FoodType
 }
 
 

@@ -114,10 +114,10 @@ class MenuManager {
     
     // MARK: Feed Menu Methods
     func buttonAPressedAtFeedMenu() {
-        foodMenu.selectFood()
+        foodMenu.cycleFoodSelector()
     }
     func buttonBPressedAtFeedMenu() {
-        
+        foodMenu.giveSelectedFood()
     }
     func buttonCPressedAtFeedMenu() {
         changeTheMenu(to: .main)

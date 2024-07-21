@@ -166,9 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				97B9041A2C46C95A00F5BFDA /* Coordinator.swift */,
-				97B904182C46C8F200F5BFDA /* GameCoordinator.swift */,
 				97B9042D2C470BF000F5BFDA /* MenuManager.swift */,
 				973B69B42C4C19910090B6B0 /* FoodMenu.swift */,
+				97B904182C46C8F200F5BFDA /* GameCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
