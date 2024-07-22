@@ -9,12 +9,15 @@ import UIKit
 import SpriteKit
 
 
-class GameCoordinator: UIViewController, SKSceneDelegate {
+class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
+
+    
     
     static var defaultSize = CGSize(width: 300, height: 300)
     static var defaultFrame = CGRect(x: 0, y: 0, width: 300, height: 300)
     
     var menuManager: MenuManager!
+    var petManager: PetManager!
     
     var secondsPassed: TimeInterval = 0.0
     var timeInterval: TimeInterval = 1.0
@@ -39,13 +42,16 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     
     var mainScene: MainScene?
     
-    var plaidEgg: PlaidEgg?
+//    var plaidEgg: PlaidEgg?
     
     // MARK: - Lifecycle
     
     func start() {
         menuManager = MenuManager(gameCoordinator: self)
         menuManager.start()
+        
+        petManager = PetManager()
+        petManager.start()
         
         loadMenuControllers()
         
@@ -68,11 +74,11 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
         } else { print("> mainScene: OK!") }
         
         // plaidEgg
-        if self.plaidEgg == nil {
-            print("> Loading plaidEgg...")
-            self.plaidEgg = PlaidEgg()
-            if plaidEgg != nil { print("> plaidEgg: OK!") }
-        } else { print("> plaidEgg: OK!") }
+        if petManager.egg == nil {
+            print("> Loading Egg...")
+            petManager.egg = EggPet()
+            if petManager.egg != nil { print("> Egg: OK!") }
+        } else { print("> Egg: OK!") }
         
         // foodBasket
         let pieceOfCakeTaste = TasteCategory(sweet: 90, sour: 10, salty: 2, bitter: 5, umami: 10)
@@ -132,10 +138,10 @@ class GameCoordinator: UIViewController, SKSceneDelegate {
     
     func decreasePetEnergy(every seconds: TimeInterval) {
         if (secondsPassed.truncatingRemainder(dividingBy: seconds) == 0 ) {
-            if let plaidEgg = plaidEgg {
-                plaidEgg.hungry -= 1
+            if let petEgg = petManager.egg {
+                petEgg.hungry -= 1
                 
-                print("> Pet hungry at \(secondsPassed) is \(plaidEgg.hungry)")
+                print("> Pet hungry at \(secondsPassed) is \(petEgg.hungry)")
             }
         }
     }
@@ -303,5 +309,9 @@ extension GameCoordinator {
         case .attention:
             menuManager.buttonCPressedAtAttentionMenu()
         }
+    }
+    
+    func stop() {
+        // code here:
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 
-class PlaidEgg: PetEgg {
+class PlaidEgg: EggPet {
     
     
     // defaults

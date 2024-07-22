@@ -9,7 +9,9 @@ import UIKit
 import SpriteKit
 
 
-class FoodMenu {
+class FoodMenu: Startable {
+
+    
     let menuManager: MenuManager
     let gameCoordinator: GameCoordinator
     
@@ -112,6 +114,10 @@ class FoodMenu {
     init(menuManager: MenuManager, gameCoordinator: GameCoordinator) {
         self.menuManager = menuManager
         self.gameCoordinator = gameCoordinator
+    }
+    
+    func stop() {
+        // Your code here
     }
 }
 

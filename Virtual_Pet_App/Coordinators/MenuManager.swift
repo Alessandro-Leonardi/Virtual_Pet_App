@@ -7,7 +7,9 @@
 
 import Foundation
 
-class MenuManager {
+class MenuManager: Startable {
+
+    
     
     let gameCoordinator: GameCoordinator
     
@@ -197,7 +199,9 @@ class MenuManager {
     }
     
     
-    
+    func stop() {
+        // Your code here
+    }
     
     
     
