@@ -10,20 +10,23 @@ import SpriteKit
 
 
 class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
-
-    
     
     static var defaultSize = CGSize(width: 300, height: 300)
     static var defaultFrame = CGRect(x: 0, y: 0, width: 300, height: 300)
     
+    var backgroundGameView: SKView?
+    var foregroundGameView: SKView?
+    
+    var mainScene: MainScene?
+    
+    var viewController: UIViewController?
     var menuManager: MenuManager!
     var petManager: PetManager!
+    var foodBasket: [Food] = []
     
     var secondsPassed: TimeInterval = 0.0
     var timeInterval: TimeInterval = 1.0
     var gameLoopTimer: Timer?
-    
-    var viewController: UIViewController?
     
     // Menu Controllers
     var mainMenu: MainMenu! = nil
@@ -34,15 +37,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
     var helthMeterMenu: HelthMeterMenu! = nil
     var disciplineMenu: DisciplineMenu! = nil
     var attentionMenu: AttentionMenu! = nil
-    
-    var backgroundGameView: SKView?
-    var foregroundGameView: SKView?
-    
-    var foodBasket: [Food] = []
-    
-    var mainScene: MainScene?
-    
-//    var plaidEgg: PlaidEgg?
+
     
     // MARK: - Lifecycle
     
@@ -50,7 +45,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
         menuManager = MenuManager(gameCoordinator: self)
         menuManager.start()
         
-        petManager = PetManager()
+        petManager = PetManager(gameCoordinator: self)
         petManager.start()
         
         loadMenuControllers()
@@ -60,6 +55,22 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
         
         self.setupGameLoop(timeInterval) //OBS: The gameLoop may be redundant because of SKScene.update()
     }
+    
+    // MARK: Game Loop Methods
+    
+    func setupGameLoop(_ timeInterval: TimeInterval) {
+        gameLoopTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(gameLoop), userInfo: nil, repeats: true)
+    }
+    
+    @objc func gameLoop() {
+        secondsPassed += timeInterval
+//        print("gameLoop at (\(secondsPassed)s)")
+        
+        petManager.update() // I'm sending this function to the pet manager because each pet will have particularyties
+    }
+    
+
+    
     
     // MARK: - MainScene Methods
     
@@ -73,7 +84,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
             if mainScene != nil { print("> mainScene: OK!") }
         } else { print("> mainScene: OK!") }
         
-        // plaidEgg
+        // egg
         if petManager.egg == nil {
             print("> Loading Egg...")
             petManager.egg = EggPet()
@@ -89,8 +100,6 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
         foodBasket.append(bread)
         
         print(foodBasket)
-        
-        
     }
     
     func presentTheMainScene(at layer: K.SKViewLayer) {
@@ -125,26 +134,7 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
     
     
     
-    func setupGameLoop(_ timeInterval: TimeInterval) {
-        gameLoopTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(gameLoop), userInfo: nil, repeats: true)
-    }
-    
-    @objc func gameLoop() {
-        secondsPassed += timeInterval
-//        print("gameLoop at (\(secondsPassed)s)")
-        
-        decreasePetEnergy(every: 2.0)
-    }
-    
-    func decreasePetEnergy(every seconds: TimeInterval) {
-        if (secondsPassed.truncatingRemainder(dividingBy: seconds) == 0 ) {
-            if let petEgg = petManager.egg {
-                petEgg.hungry -= 1
-                
-                print("> Pet hungry at \(secondsPassed) is \(petEgg.hungry)")
-            }
-        }
-    }
+
     
     func shallChangeSceneFor(_ scene: K.Menu) {
         

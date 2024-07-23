@@ -24,7 +24,7 @@ class TestViewController: UIViewController{
     
     
     // Sprite Nodes
-    var plaidEgg: PlaidEgg = PlaidEgg(position: PlaidEgg.defaultPosition, anchorPoint: PlaidEgg.defaultAnchorPoint)
+    var plaidEgg: CheckboardPattern = CheckboardPattern(position: CheckboardPattern.defaultPosition, anchorPoint: CheckboardPattern.defaultAnchorPoint)
     
     var loopStandingAnimation: SKAction?
     var myTransition: SKTransition = SKTransition.moveIn(with: .up, duration: 30.0)

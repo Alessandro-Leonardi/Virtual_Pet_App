@@ -9,7 +9,9 @@ import Foundation
 
 class PetManager: Startable {
     
-    var petStage: PetStage = .egg
+    var gameCoordinator: GameCoordinator!
+    
+    var stage: PetStage = .egg
     
     var egg: EggPet?
     var eggType: EggType?
@@ -21,20 +23,63 @@ class PetManager: Startable {
     
     func start() {
         // Your code here
-        egg = PlaidEgg(position: PlaidEgg.defaultPosition, anchorPoint: PlaidEgg.defaultAnchorPoint)
+        
+        guard gameCoordinator == nil else { print("> Couldn't start PetManager since gameCoordinator is nil."); return }
+        
+        loadRandomEgg()
+    }
+    
+    // MARK: Pet Stats Methods
+    
+    func update() {
+        decreasePetEnergy(every: 2.0)
+    }
+    
+    func decreasePetEnergy(every seconds: TimeInterval) {
+        
+        if let gameCoordinator = gameCoordinator {
+            if (gameCoordinator.secondsPassed.truncatingRemainder(dividingBy: TimeInterval(integerLiteral: seconds)) == 0 ) {
+                if let petEgg = egg {
+                    petEgg.hungry -= 1
+                    
+                    print("> Pet hungry at \(gameCoordinator.secondsPassed) is \(petEgg.hungry)")
+                } else { print("> Egg is nil at 'decreasePetEnerty > PetManager'") }
+            }
+        } else { print("> Game Coordinator is nil at 'decreasePetEnerty > PetManager'") }
+    }
+    
+    func loadEgg(ofType type: EggType) {
+        switch type {
+        case .checkboardPattern: egg = CheckboardPattern(position: CheckboardPattern.defaultPosition, anchorPoint: CheckboardPattern.defaultAnchorPoint)
+        default: return
+        }
+    }
+    
+    func loadRandomEgg() {
+        let randomInt = Int.random(in: 0..<6)
+        
+        let randomEggType = randomEggType()
+        
+        loadEgg(ofType: randomEggType)
+        
+    }
+    
+    func randomEggType() -> EggType {
+        
+        return .checkboardPattern
     }
     
     func stop() {
         // Your code here
     }
     
-    init() {
-        
+    init(gameCoordinator: GameCoordinator) {
+        self.gameCoordinator = gameCoordinator
     }
 }
 
 
-enum EggType: String {
+enum EggType: String, CaseIterable {
     case plainWhite = "Plain White"
     case plainBlack = "Plain Black"
     case whiteWithDarkSpots = "White With Dark Spots"

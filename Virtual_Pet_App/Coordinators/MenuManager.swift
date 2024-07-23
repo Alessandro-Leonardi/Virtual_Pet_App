@@ -9,8 +9,6 @@ import Foundation
 
 class MenuManager: Startable {
 
-    
-    
     let gameCoordinator: GameCoordinator
     
     var lastButtonPressed: K.Button! = nil
@@ -102,9 +100,16 @@ class MenuManager: Startable {
     
     // MARK: Main Menu Methods
     func buttonAPressedAtMainMenu() {
-        print("> Button A pressed at the main menu ")
-        selectNextMenuItem()
-        selectMain(in: 3.0)
+        
+        switch gameCoordinator.petManager.stage {
+        case .egg: 
+            print("> Eggs cannot eat! Wait for it to break it's shell...")
+        default:
+            print("> Button A pressed at the main menu ")
+            selectNextMenuItem()
+            selectMain(in: 3.0)
+        }
+
     }
     func buttonBPressedAtMainMenu() {
         changeTheMenu(to: selectedMenu)

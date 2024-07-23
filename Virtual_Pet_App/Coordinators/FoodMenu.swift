@@ -46,16 +46,16 @@ class FoodMenu: Startable {
     
     func giveSelectedFood() {
         
-        if let plaidEgg = gameCoordinator.plaidEgg {
+        if let egg = gameCoordinator.petManager.egg {
             
             
             
-            print("> Pet hungry points: \(plaidEgg.hungry)")
+            print("> Pet hungry points: \(egg.hungry)")
             
             if gameCoordinator.foodBasket.count >= 1 {
                 print("> Feeding the pet with \(gameCoordinator.foodBasket[cycleFoodIndex].name)...")
-                plaidEgg.hungry += (2000 / gameCoordinator.foodBasket[cycleFoodIndex].calories )
-                print("> Pet hungry now is: \(plaidEgg.hungry)")
+                egg.hungry += (2000 / gameCoordinator.foodBasket[cycleFoodIndex].calories )
+                print("> Pet hungry now is: \(egg.hungry)")
             } else { print("> No food to feed...") }
             
         } else { print("> No plaidEgg to be feed.") }

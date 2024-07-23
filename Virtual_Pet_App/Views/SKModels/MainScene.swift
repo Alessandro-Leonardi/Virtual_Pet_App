@@ -21,7 +21,7 @@ class MainScene: SKScene {
         do {
             
             guard let gameCoordinator = self.gameCoordinator else { throw AppError.gameCoordinatorIsNil }
-            guard let plaidEgg = gameCoordinator.plaidEgg else { throw AppError.plaidEggIsNil }
+            guard let plaidEgg = gameCoordinator.petManager.egg else { throw AppError.plaidEggIsNil }
             
             guard let plaidEggSprite = plaidEgg.sprite else { throw AppError.plaidEggIsNil }
             guard let plaidEggStandingAnimation = plaidEgg.standingAnimation else { throw AppError.plaidEggStandingAnimationIsNil }

@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 
-class PlaidEgg: EggPet {
+class CheckboardPattern: EggPet {
     
     
     // defaults
@@ -23,7 +23,7 @@ class PlaidEgg: EggPet {
         
         super.init()
         
-        self.info = PetEggInfo(type: "Plaid Egg")
+//        self.info = PetEggInfo(type: "Plaid Egg")
         
         self.eggType = "Plaid_Egg"
         self.sprite = SKSpriteNode(texture: SKTexture(imageNamed: "Plaid_Egg_Standing_01_"))
@@ -42,7 +42,7 @@ class PlaidEgg: EggPet {
                 
     }
     
-    convenience init(position: CGPoint = PlaidEgg.defaultPosition, anchorPoint: CGPoint = PlaidEgg.defaultAnchorPoint){
+    convenience init(position: CGPoint = CheckboardPattern.defaultPosition, anchorPoint: CGPoint = CheckboardPattern.defaultAnchorPoint){
         self.init()
         
         self.sprite?.position = position

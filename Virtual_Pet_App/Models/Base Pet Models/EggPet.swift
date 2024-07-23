@@ -14,7 +14,6 @@ class EggPet {
     // helthMeter
     var hungry: Int = 70 {
         didSet {
-            print("> hungry didSet was triggered.")
             if oldValue > 100 { self.hungry = 100} else if oldValue < 0 { self.hungry = 0 }
         }
     }
