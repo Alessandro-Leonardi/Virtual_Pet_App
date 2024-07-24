@@ -26,8 +26,10 @@ class EggPet {
     
     // genetic info:
     var eggType: String?
-    var geneticInfo: String?
+    var geneticInfo: GeneticInfo = GeneticInfo()
     var secondaryGeneticInfo: String?
+    let hungryness: Int = 5
+    
     
     
     // sprites:
@@ -43,6 +45,26 @@ class EggPet {
 //    var info: PetEggInfo = PetEggInfo(type: "Primitive")
 //    var isManagingItself: Bool = false
 //    var timer: Timer?
+    
+    // MARK: Egg Methods
+    
+    func eggUpdate() {
+        eggDegreeOfRipnessUpdater()
+        
+    }
+    
+    func eggDegreeOfRipnessUpdater() {
+        degreeOfRipness += 1 * (geneticInfo.prematureness)
+            
+        if (degreeOfRipness > 70) {
+            prepareForEggToBreak()
+            if (degreeOfRipness >= 100) { eggShallBreak = true }
+        }
+    }
+    
+    func prepareForEggToBreak() {
+        
+    }
     
     
     @objc func manageState() {

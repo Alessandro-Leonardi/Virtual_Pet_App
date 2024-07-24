@@ -19,3 +19,9 @@ struct PetEggInfo {
     }
 }
 
+
+
+class GeneticInfo {
+    var prematureness: Float = 0.5
+    var hungriness: Float = 0.5
+}

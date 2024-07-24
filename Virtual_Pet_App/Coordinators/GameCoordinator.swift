@@ -24,8 +24,8 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
     var petManager: PetManager!
     var foodBasket: [Food] = []
     
-    var secondsPassed: TimeInterval = 0.0
-    var timeInterval: TimeInterval = 1.0
+    var secondsPassed: Int = 0
+    let timeInterval: Int = 1
     var gameLoopTimer: Timer?
     
     // Menu Controllers
@@ -50,31 +50,14 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
         
         loadMenuControllers()
         
-        prepareForMainScene()
-        presentTheMainScene(at: .background)
+        prepareForEggPetScene()
+        presentEggPetScene(at: .background)
         
         self.setupGameLoop(timeInterval) //OBS: The gameLoop may be redundant because of SKScene.update()
     }
     
-    // MARK: Game Loop Methods
-    
-    func setupGameLoop(_ timeInterval: TimeInterval) {
-        gameLoopTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(gameLoop), userInfo: nil, repeats: true)
-    }
-    
-    @objc func gameLoop() {
-        secondsPassed += timeInterval
-//        print("gameLoop at (\(secondsPassed)s)")
-        
-        petManager.update() // I'm sending this function to the pet manager because each pet will have particularyties
-    }
-    
-
-    
-    
-    // MARK: - MainScene Methods
-    
-    func prepareForMainScene() {
+    // MARK: Scene Manager - Verb: Prepare
+    func prepareForEggPetScene() {
         print(">> GameCoordinator.prepareForMainScene():")
         
         // mainScene
@@ -101,8 +84,21 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
         
         print(foodBasket)
     }
+    func prepareForBabyPetScene() {
+        
+    }
+    func prepareForChildPetScene() {
+        
+    }
+    func prepareForTeenPetScene() {
+        
+    }
+    func prepareForAdultPetScene() {
+        
+    }
     
-    func presentTheMainScene(at layer: K.SKViewLayer) {
+    // MARK: Scene Manager - Verb: Present
+    func presentEggPetScene(at layer: K.SKViewLayer) {
         print("> GameCoordinator.presentTheMainScene() :")
         
         do {
@@ -129,6 +125,94 @@ class GameCoordinator: UIViewController, SKSceneDelegate, Startable {
             print("> something went wrong at GameCoordinator.presentTheMainScene()")
         }
     }
+    func presentBabyPetScene() {
+        
+    }
+    func presentChildPetScene() {
+        
+    }
+    func presentTeenPetScene() {
+        
+    }
+    func presentAdultPetScene() {
+        
+    }
+    
+    
+    
+    // MARK: Game Loop Methods
+    
+    func setupGameLoop(_ timeInterval: Int) {
+        gameLoopTimer = Timer.scheduledTimer(timeInterval: Double(timeInterval), target: self, selector: #selector(gameLoop), userInfo: nil, repeats: true)
+    }
+    
+    @objc func gameLoop() {
+        secondsPassed += timeInterval
+//        print("gameLoop at (\(secondsPassed)s)")
+        
+        petManager.update() // I'm sending this function to the pet manager because each pet will have particularyties
+    }
+    
+
+    
+    
+    // MARK: - MainScene Methods
+    
+//    func prepareForMainScene() {
+//        print(">> GameCoordinator.prepareForMainScene():")
+//        
+//        // mainScene
+//        if self.mainScene == nil {
+//            print("> Loading mainScene...")
+//            self.mainScene = MainScene(size: GameCoordinator.defaultSize, coordinator: self, anchorPoint: MainScene.defaultAnchorPoint)
+//            if mainScene != nil { print("> mainScene: OK!") }
+//        } else { print("> mainScene: OK!") }
+//        
+//        // egg
+//        if petManager.egg == nil {
+//            print("> Loading Egg...")
+//            petManager.egg = EggPet()
+//            if petManager.egg != nil { print("> Egg: OK!") }
+//        } else { print("> Egg: OK!") }
+//        
+//        // foodBasket
+//        let pieceOfCakeTaste = TasteCategory(sweet: 90, sour: 10, salty: 2, bitter: 5, umami: 10)
+//        let piece_of_cake = Food(name: "Piece of Cake", calories: 260, taste: pieceOfCakeTaste)
+//        let breadTaste = TasteCategory(sweet: 10, sour: 5, salty: 10, bitter: 2, umami: 8)
+//        let bread = Food(name: "Bread", calories: 40, taste: breadTaste)
+//        foodBasket.append(piece_of_cake)
+//        foodBasket.append(bread)
+//        
+//        print(foodBasket)
+//    }
+    
+//    func presentTheMainScene(at layer: K.SKViewLayer) {
+//        print("> GameCoordinator.presentTheMainScene() :")
+//        
+//        do {
+//            guard let mainScene = self.mainScene else { throw AppError.mainSceneIsNil }
+//            
+//            mainScene.setup()
+//            
+//            switch layer {
+//            case .background:
+//                guard let backgroundGameView = self.backgroundGameView else { throw AppError.backgroundGameViewIsNil }
+//                backgroundGameView.presentScene(mainScene)
+//            case .foreground:
+//                guard let foregroundGameView = self.foregroundGameView else { throw AppError.foregroundGameViewIsNil }
+//                foregroundGameView.presentScene(mainScene)
+//            }
+//        }
+//        catch AppError.backgroundGameViewIsNil {
+//            print("> gameCoordinator.backgroundGameView is nil.")
+//        }
+//        catch AppError.mainSceneIsNil {
+//            print("> gameCoordinator.mainScene is nil.")
+//        }
+//        catch {
+//            print("> something went wrong at GameCoordinator.presentTheMainScene()")
+//        }
+//    }
     
     
     

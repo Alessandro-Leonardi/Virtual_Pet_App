@@ -32,13 +32,25 @@ class PetManager: Startable {
     // MARK: Pet Stats Methods
     
     func update() {
-        decreasePetEnergy(every: 2.0)
+        
+        switch stage {
+        case .egg:
+            if let egg = gameCoordinator.petManager.egg { egg.eggUpdate() }
+        case .baby:
+            babyUpdate()
+        case .child:
+            childUpdate()
+        case .teen:
+            teenUpdate()
+        case .adult:
+            adultUpdate()
+        }
     }
     
-    func decreasePetEnergy(every seconds: TimeInterval) {
+    func decreasePetEnergy(every seconds: Int) {
         
         if let gameCoordinator = gameCoordinator {
-            if (gameCoordinator.secondsPassed.truncatingRemainder(dividingBy: TimeInterval(integerLiteral: seconds)) == 0 ) {
+            if (gameCoordinator.secondsPassed == 0 ) {
                 if let petEgg = egg {
                     petEgg.hungry -= 1
                     
@@ -76,6 +88,43 @@ class PetManager: Startable {
     init(gameCoordinator: GameCoordinator) {
         self.gameCoordinator = gameCoordinator
     }
+    
+    
+
+    
+
+    
+    // MARK: Baby Methods
+    
+    func babyUpdate() {
+        decreasePetEnergy(every: 2)
+    }
+    
+    // MARK: Child Methods
+    
+    func childUpdate() {
+        
+    }
+    
+    // MARK: Teen Methods
+    
+    func teenUpdate() {
+        
+    }
+    
+    
+    // MARK: Adult Methods
+    
+    func adultUpdate() {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
 }
 
 

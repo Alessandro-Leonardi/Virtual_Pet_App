@@ -26,7 +26,7 @@
 		97B904192C46C8F200F5BFDA /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904182C46C8F200F5BFDA /* GameCoordinator.swift */; };
 		97B9041E2C46C9F800F5BFDA /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B9041D2C46C9F800F5BFDA /* MainScene.swift */; };
 		97B904212C46FDC100F5BFDA /* EggPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904202C46FDC100F5BFDA /* EggPet.swift */; };
-		97B904232C46FE1600F5BFDA /* InfoEggPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904222C46FE1600F5BFDA /* InfoEggPet.swift */; };
+		97B904232C46FE1600F5BFDA /* InfoPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904222C46FE1600F5BFDA /* InfoPet.swift */; };
 		97B904252C46FE3B00F5BFDA /* CheckboardPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904242C46FE3B00F5BFDA /* CheckboardPattern.swift */; };
 		97B9042A2C47004200F5BFDA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B904292C47004200F5BFDA /* TestViewController.swift */; };
 		97B9042C2C47007300F5BFDA /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B9042B2C47007300F5BFDA /* K.swift */; };
@@ -62,7 +62,7 @@
 		97B904182C46C8F200F5BFDA /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 		97B9041D2C46C9F800F5BFDA /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
 		97B904202C46FDC100F5BFDA /* EggPet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggPet.swift; sourceTree = "<group>"; };
-		97B904222C46FE1600F5BFDA /* InfoEggPet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoEggPet.swift; sourceTree = "<group>"; };
+		97B904222C46FE1600F5BFDA /* InfoPet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPet.swift; sourceTree = "<group>"; };
 		97B904242C46FE3B00F5BFDA /* CheckboardPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboardPattern.swift; sourceTree = "<group>"; };
 		97B904292C47004200F5BFDA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		97B9042B2C47007300F5BFDA /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 		97B904262C46FE5900F5BFDA /* Base Pet Models */ = {
 			isa = PBXGroup;
 			children = (
-				97B904222C46FE1600F5BFDA /* InfoEggPet.swift */,
+				97B904222C46FE1600F5BFDA /* InfoPet.swift */,
 				97B904202C46FDC100F5BFDA /* EggPet.swift */,
 				97C3760E2C4E6B64006F03D9 /* BabyPet.swift */,
 				97C3760C2C4E6B58006F03D9 /* ChildPet.swift */,
@@ -302,7 +302,7 @@
 				973B69B12C4AA0A20090B6B0 /* AttentionMenu.swift in Sources */,
 				97B904002C46B21F00F5BFDA /* AppDelegate.swift in Sources */,
 				973B69A92C4A9FD70090B6B0 /* PlayMenu.swift in Sources */,
-				97B904232C46FE1600F5BFDA /* InfoEggPet.swift in Sources */,
+				97B904232C46FE1600F5BFDA /* InfoPet.swift in Sources */,
 				973B699F2C4A89A00090B6B0 /* Food.swift in Sources */,
 				97B9041E2C46C9F800F5BFDA /* MainScene.swift in Sources */,
 				973B69AB2C4AA05B0090B6B0 /* DuckMenu.swift in Sources */,
