@@ -26,7 +26,8 @@ class PetManager: Startable {
         
         guard gameCoordinator == nil else { print("> Couldn't start PetManager since gameCoordinator is nil."); return }
         
-        loadRandomEgg()
+//        loadEgg(ofType: randomEggType())
+        loadEgg(ofType: .checkboardPattern)
     }
     
     // MARK: Pet Stats Methods
@@ -67,18 +68,14 @@ class PetManager: Startable {
         }
     }
     
-    func loadRandomEgg() {
+    func randomEggType() -> EggType {
         let randomInt = Int.random(in: 0..<6)
         
-        let randomEggType = randomEggType()
+        let optionalEgg: EggType? = EggType.allCases[randomInt]
         
-        loadEgg(ofType: randomEggType)
-        
-    }
-    
-    func randomEggType() -> EggType {
-        
-        return .checkboardPattern
+        if let randomEgg = optionalEgg {
+            return randomEgg
+        } else { return .checkboardPattern }
     }
     
     func stop() {
